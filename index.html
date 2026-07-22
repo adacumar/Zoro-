@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mindmaze - The Future of Professional Skills</title>
+    <style>
+        :root {
+            --bg-color: #050508;
+            --card-bg: rgba(20, 20, 35, 0.85);
+            --border-color: rgba(168, 85, 247, 0.3);
+            --accent-color: #c084fc;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --price-color: #4ade80;
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            max-width: 700px;
+        }
+        h1 {
+            color: var(--accent-color);
+            font-size: 3rem;
+            margin-bottom: 5px;
+            letter-spacing: 2px;
+        }
+        p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+        .badge {
+            background: linear-gradient(135deg, #1e1b4b, #311045);
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 15px;
+            box-shadow: 0 4px 20px rgba(192, 132, 252, 0.15);
+        }
+        .container {
+            width: 100%;
+            max-width: 750px;
+        }
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            margin-bottom: 20px;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(192, 132, 252, 0.3);
+            border-color: var(--accent-color);
+        }
+        .card-content {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .info h3 {
+            margin: 0 0 5px 0;
+            color: #e879f9;
+            font-size: 1.25rem;
+        }
+        .info p {
+            margin: 0;
+            color: var(--price-color);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .btn-enroll {
+            background: linear-gradient(135deg, #7c3aed, #c084fc);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-block;
+            transition: opacity 0.2s;
+        }
+        .btn-enroll:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>MINDMAZE</h1>
+        <p>We Transcend Dimensions. The Global Ecosystem for Advanced Tech, Trading & Professional Skills.<br>Instructors earn 70%, Platform retains 30%.</p>
+        <div class="badge">Model: 30% Platform | 70% Instructor</div>
+    </header>
+
+    <div class="container">
+        <!-- 1 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>1. Full-Stack Programming</h3><p>Level 1 ($5) | Level 2 ($10) | Level 3 ($20)</p></div><a href="https://www.google.com/search?q=Full-Stack+Programming+tutorial+video" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 2 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>2. Cybersecurity & Ethical Hacking</h3><p>Level 1 ($6) | Level 2 ($12) | Level 3 ($25)</p></div><a href="https://www.google.com/search?q=Cybersecurity+course+video" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 3 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>3. AI Agents & Automation</h3><p>Level 1 ($5) | Level 2 ($10) | Level 3 ($22)</p></div><a href="https://www.google.com/search?q=AI+Agents+and+Automation+tutorial" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 4 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>4. Cryptocurrency & Blockchain</h3><p>Level 1 ($4) | Level 2 ($9) | Level 3 ($18)</p></div><a href="https://www.google.com/search?q=Cryptocurrency+and+Blockchain+course" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 5 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>5. Forex Trading</h3><p>Level 1 ($4) | Level 2 ($8) | Level 3 ($15)</p></div><a href="https://www.google.com/search?q=Forex+Trading+strategy+video" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 6 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>6. Stock Market & Options</h3><p>Level 1 ($4) | Level 2 ($8) | Level 3 ($16)</p></div><a href="https://www.google.com/search?q=Stock+Market+and+Options+trading" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 7 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>7. Mobile App Development</h3><p>Level 1 ($5) | Level 2 ($10) | Level 3 ($20)</p></div><a href="https://www.google.com/search?q=Mobile+App+Development+tutorial" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 8 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>8. Cloud Computing (AWS/Azure)</h3><p>Level 1 ($5) | Level 2 ($11) | Level 3 ($22)</p></div><a href="https://www.google.com/search?q=Cloud+Computing+AWS+Azure+course" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 9 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>9. Machine Learning & Data Science</h3><p>Level 1 ($6) | Level 2 ($12) | Level 3 ($25)</p></div><a href="https://www.google.com/search?q=Machine+Learning+and+Data+Science" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 10 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>10. UI/UX Design</h3><p>Level 1 ($4) | Level 2 ($7) | Level 3 ($15)</p></div><a href="https://www.google.com/search?q=UI+UX+Design+tutorial" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 11 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>11. Video Editing</h3><p>Level 1 ($3) | Level 2 ($6) | Level 3 ($12)</p></div><a href="https://www.google.com/search?q=Video+Editing+masterclass" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 12 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>12. Thumbnail Design</h3><p>Level 1 ($3) | Level 2 ($5) | Level 3 ($10)</p></div><a href="https://www.google.com/search?q=Thumbnail+Design+tutorial" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 13 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>13. Graphic Design</h3><p>Level 1 ($3) | Level 2 ($6) | Level 3 ($12)</p></div><a href="https://www.google.com/search?q=Graphic+Design+course" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 14 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>14. Motion Graphics</h3><p>Level 1 ($4) | Level 2 ($8) | Level 3 ($15)</p></div><a href="https://www.google.com/search?q=Motion+Graphics+tutorial" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 15 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>15. Copywriting & Content Strategy</h3><p>Level 1 ($3) | Level 2 ($6) | Level 3 ($12)</p></div><a href="https://www.google.com/search?q=Copywriting+and+Content+Strategy" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 16 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>16. Digital Marketing & SEO</h3><p>Level 1 ($4) | Level 2 ($8) | Level 3 ($16)</p></div><a href="https://www.google.com/search?q=Digital+Marketing+and+SEO+course" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 17 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>17. E-Commerce & Dropshipping</h3><p>Level 1 ($4) | Level 2 ($9) | Level 3 ($18)</p></div><a href="https://www.google.com/search?q=E-Commerce+and+Dropshipping" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 18 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>18. Web3 & Smart Contracts</h3><p>Level 1 ($6) | Level 2 ($12) | Level 3 ($24)</p></div><a href="https://www.google.com/search?q=Web3+and+Smart+Contracts+development" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 19 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>19. Game Development (Unity/Unreal)</h3><p>Level 1 ($5) | Level 2 ($11) | Level 3 ($22)</p></div><a href="https://www.google.com/search?q=Game+Development+Unity+Unreal" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 20 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>20. 3D Modeling & Animation</h3><p>Level 1 ($4) | Level 2 ($9) | Level 3 ($18)</p></div><a href="https://www.google.com/search?q=3D+Modeling+and+Animation" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 21 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>21. Podcast Production & Audio Eng.</h3><p>Level 1 ($3) | Level 2 ($6) | Level 3 ($12)</p></div><a href="https://www.google.com/search?q=Podcast+Production+Audio+Engineering" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 22 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>22. Penetration Testing</h3><p>Level 1 ($6) | Level 2 ($13) | Level 3 ($26)</p></div><a href="https://www.google.com/search?q=Penetration+Testing+ethical+hacking" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 23 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>23. Prompt Engineering</h3><p>Level 1 ($3) | Level 2 ($6) | Level 3 ($12)</p></div><a href="https://www.google.com/search?q=Prompt+Engineering+tutorial" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 24 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>24. Robotics & IoT Programming</h3><p>Level 1 ($6) | Level 2 ($12) | Level 3 ($25)</p></div><a href="https://www.google.com/search?q=Robotics+and+IoT+Programming" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 25 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>25. Project Management (Agile/Scrum)</h3><p>Level 1 ($4) | Level 2 ($8) | Level 3 ($16)</p></div><a href="https://www.google.com/search?q=Project+Management+Agile+Scrum" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 26 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>26. Financial Analysis</h3><p>Level 1 ($4) | Level 2 ($9) | Level 3 ($18)</p></div><a href="https://www.google.com/search?q=Financial+Analysis+course" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 27 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>27. Fintech & Regulatory Compliance</h3><p>Level 1 ($5) | Level 2 ($10) | Level 3 ($20)</p></div><a href="https://www.google.com/search?q=Fintech+and+Regulatory+Compliance" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 28 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>28. Networking & P2P Mesh Systems</h3><p>Level 1 ($5) | Level 2 ($11) | Level 3 ($22)</p></div><a href="https://www.google.com/search?q=Networking+and+P2P+Mesh+Systems" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 29 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>29. Cryptography & Data Privacy</h3><p>Level 1 ($6) | Level 2 ($12) | Level 3 ($25)</p></div><a href="https://www.google.com/search?q=Cryptography+and+Data+Privacy" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 30 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>30. Software Testing & QA</h3><p>Level 1 ($4) | Level 2 ($8) | Level 3 ($16)</p></div><a href="https://www.google.com/search?q=Software+Testing+and+QA" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 31 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>31. Database Administration (SQL/NoSQL)</h3><p>Level 1 ($4) | Level 2 ($9) | Level 3 ($18)</p></div><a href="https://www.google.com/search?q=Database+Administration+SQL+NoSQL" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 32 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>32. DevOps & CI/CD Pipelines</h3><p>Level 1 ($6) | Level 2 ($12) | Level 3 ($24)</p></div><a href="https://www.google.com/search?q=DevOps+and+CICD+Pipelines" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 33 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>33. Linux System Administration</h3><p>Level 1 ($4) | Level 2 ($8) | Level 3 ($16)</p></div><a href="https://www.google.com/search?q=Linux+System+Administration" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 34 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>34. Software Architecture</h3><p>Level 1 ($6) | Level 2 ($13) | Level 3 ($26)</p></div><a href="https://www.google.com/search?q=Software+Architecture+design" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 35 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>35. Augmented Reality (AR) Dev</h3><p>Level 1 ($5) | Level 2 ($11) | Level 3 ($22)</p></div><a href="https://www.google.com/search?q=Augmented+Reality+AR+development" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 36 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>36. Virtual Reality (VR) Dev</h3><p>Level 1 ($5) | Level 2 ($11) | Level 3 ($22)</p></div><a href="https://www.google.com/search?q=Virtual+Reality+VR+development" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 37 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>37. Natural Language Processing (NLP)</h3><p>Level 1 ($6) | Level 2 ($12) | Level 3 ($25)</p></div><a href="https://www.google.com/search?q=Natural+Language+Processing+NLP" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 38 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>38. Computer Vision Engineering</h3><p>Level 1 ($6) | Level 2 ($13) | Level 3 ($26)</p></div><a href="https://www.google.com/search?q=Computer+Vision+Engineering" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 39 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>39. Quantum Computing Basics</h3><p>Level 1 ($7) | Level 2 ($15) | Level 3 ($30)</p></div><a href="https://www.google.com/search?q=Quantum+Computing+Basics" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 40 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>40. Hardware Engineering Basics</h3><p>Level 1 ($5) | Level 2 ($10) | Level 3 ($20)</p></div><a href="https://www.google.com/search?q=Hardware+Engineering+Basics" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 41 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>41. Business Intelligence & Tableau</h3><p>Level 1 ($4) | Level 2 ($9) | Level 3 ($18)</p></div><a href="https://www.google.com/search?q=Business+Intelligence+and+Tableau" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 42 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>42. Brand Strategy & Identity</h3><p>Level 1 ($4) | Level 2 ($8) | Level 3 ($16)</p></div><a href="https://www.google.com/search?q=Brand+Strategy+and+Identity" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 43 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>43. Public Speaking & Communication</h3><p>Level 1 ($3) | Level 2 ($6) | Level 3 ($12)</p></div><a href="https://www.google.com/search?q=Public+Speaking+and+Communication" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 44 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>44. Technical Writing</h3><p>Level 1 ($4) | Level 2 ($8) | Level 3 ($16)</p></div><a href="https://www.google.com/search?q=Technical+Writing+course" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 45 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>45. Translation & Localization</h3><p>Level 1 ($3) | Level 2 ($6) | Level 3 ($12)</p></div><a href="https://www.google.com/search?q=Translation+and+Localization" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 46 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>46. Growth Hacking</h3><p>Level 1 ($4) | Level 2 ($9) | Level 3 ($18)</p></div><a href="https://www.google.com/search?q=Growth+Hacking+strategies" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 47 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>47. Venture Capital & Startup Funding</h3><p>Level 1 ($6) | Level 2 ($12) | Level 3 ($25)</p></div><a href="https://www.google.com/search?q=Venture+Capital+and+Startup+Funding" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 48 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>48. Smart Contract Auditing</h3><p>Level 1 ($7) | Level 2 ($14) | Level 3 ($28)</p></div><a href="https://www.google.com/search?q=Smart+Contract+Auditing" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 49 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>49. Malware Analysis & Reverse Eng.</h3><p>Level 1 ($7) | Level 2 ($14) | Level 3 ($28)</p></div><a href="https://www.google.com/search?q=Malware+Analysis+and+Reverse+Engineering" target="_blank" class="btn-enroll">Join</a></div></div>
+        
+        <!-- 50 -->
+        <div class="card"><div class="card-content"><div class="info"><h3>50. Decentralized Autonomous Orgs (DAOs)</h3><p>Level 1 ($5) | Level 2 ($10) | Level 3 ($20)</p></div><a href="https://www.google.com/search?q=Decentralized+Autonomous+Organizations+DAOs" target="_blank" class="btn-enroll">Join</a></div></div>
+    </div>
+
+</body>
+</html>
