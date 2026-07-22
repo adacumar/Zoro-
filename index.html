@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mindmaze - The Future of Professional Skills</title>
+    <style>
+        :root {
+            --bg-color: #050508;
+            --card-bg: rgba(20, 20, 35, 0.85);
+            --border-color: rgba(168, 85, 247, 0.3);
+            --accent-color: #c084fc;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --price-color: #4ade80; /* Cagaar casri ah oo dhiirigelin leh */
+        }
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            max-width: 700px;
+        }
+        h1 {
+            color: var(--accent-color);
+            font-size: 3rem;
+            margin-bottom: 5px;
+            letter-spacing: 2px;
+        }
+        p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+        .badge {
+            background: linear-gradient(135deg, #1e1b4b, #311045);
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 15px;
+            box-shadow: 0 4px 20px rgba(192, 132, 252, 0.15);
+        }
+        .container {
+            width: 100%;
+            max-width: 750px;
+        }
+        .card {
+            background: var(--card-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-color);
+            margin-bottom: 20px;
+            border-radius: 16px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(192, 132, 252, 0.3);
+            border-color: var(--accent-color);
+        }
+        .card-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .card-content {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .info h3 {
+            margin: 0 0 5px 0;
+            color: #e879f9;
+            font-size: 1.25rem;
+        }
+        .info p {
+            margin: 0;
+            color: var(--price-color);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .btn-enroll {
+            background: linear-gradient(135deg, #7c3aed, #c084fc);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .btn-enroll:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>MINDMAZE</h1>
+        <p>We Transcend Dimensions. The Global Ecosystem for Advanced Tech, Trading & Professional Skills.<br>Instructors earn 70%, Platform retains 30%.</p>
+        <div class="badge">Model: 30% Platform | 70% Instructor</div>
+    </header>
+
+    <div class="container">
+        <!-- 1 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=60" alt="Programming" class="card-img">
+            <div class="card-content"><div class="info"><h3>1. Full-Stack Programming</h3><p>Level 1 ($5) | Level 2 ($10) | Level 3 ($20)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 2 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=60" alt="Cybersecurity" class="card-img">
+            <div class="card-content"><div class="info"><h3>2. Cybersecurity & Ethical Hacking</h3><p>Level 1 ($6) | Level 2 ($12) | Level 3 ($25)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 3 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=60" alt="AI Agents" class="card-img">
+            <div class="card-content"><div class="info"><h3>3. AI Agents & Automation</h3><p>Level 1 ($5) | Level 2 ($10) | Level 3 ($22)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 4 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=crop&w=800&q=60" alt="Crypto" class="card-img">
+            <div class="card-content"><div class="info"><h3>4. Cryptocurrency & Blockchain</h3><p>Level 1 ($4) | Level 2 ($9) | Level 3 ($18)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 5 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=60" alt="Forex" class="card-img">
+            <div class="card-content"><div class="info"><h3>5. Forex Trading</h3><p>Level 1 ($4) | Level 2 ($8) | Level 3 ($15)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 6 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?auto=format&fit=crop&w=800&q=60" alt="Stock Market" class="card-img">
+            <div class="card-content"><div class="info"><h3>6. Stock Market & Options</h3><p>Level 1 ($4) | Level 2 ($8) | Level 3 ($16)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 7 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=60" alt="Mobile Dev" class="card-img">
+            <div class="card-content"><div class="info"><h3>7. Mobile App Development</h3><p>Level 1 ($5) | Level 2 ($10) | Level 3 ($20)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 8 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=60" alt="Cloud" class="card-img">
+            <div class="card-content"><div class="info"><h3>8. Cloud Computing (AWS/Azure)</h3><p>Level 1 ($5) | Level 2 ($11) | Level 3 ($22)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 9 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1507146153580-6f1106b04006?auto=format&fit=crop&w=800&q=60" alt="Data Science" class="card-img">
+            <div class="card-content"><div class="info"><h3>9. Machine Learning & Data Science</h3><p>Level 1 ($6) | Level 2 ($12) | Level 3 ($25)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 10 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=800&q=60" alt="UI/UX" class="card-img">
+            <div class="card-content"><div class="info"><h3>10. UI/UX Design</h3><p>Level 1 ($4) | Level 2 ($7) | Level 3 ($15)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 11 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=800&q=60" alt="Video Editing" class="card-img">
+            <div class="card-content"><div class="info"><h3>11. Video Editing</h3><p>Level 1 ($3) | Level 2 ($6) | Level 3 ($12)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 12 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&w=800&q=60" alt="Thumbnail" class="card-img">
+            <div class="card-content"><div class="info"><h3>12. Thumbnail Design</h3><p>Level 1 ($3) | Level 2 ($5) | Level 3 ($10)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 13 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1626544827763-d516dce335e2?auto=format&fit=crop&w=800&q=60" alt="Graphic Design" class="card-img">
+            <div class="card-content"><div class="info"><h3>13. Graphic Design</h3><p>Level 1 ($3) | Level 2 ($6) | Level 3 ($12)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 14 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=60" alt="Motion Graphics" class="card-img">
+            <div class="card-content"><div class="info"><h3>14. Motion Graphics</h3><p>Level 1 ($4) | Level 2 ($8) | Level 3 ($15)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 15 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=800&q=60" alt="Copywriting" class="card-img">
+            <div class="card-content"><div class="info"><h3>15. Copywriting & Content Strategy</h3><p>Level 1 ($3) | Level 2 ($6) | Level 3 ($12)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 16 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?auto=format&fit=crop&w=800&q=60" alt="Marketing" class="card-img">
+            <div class="card-content"><div class="info"><h3>16. Digital Marketing & SEO</h3><p>Level 1 ($4) | Level 2 ($8) | Level 3 ($16)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 17 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?auto=format&fit=crop&w=800&q=60" alt="E-commerce" class="card-img">
+            <div class="card-content"><div class="info"><h3>17. E-Commerce & Dropshipping</h3><p>Level 1 ($4) | Level 2 ($9) | Level 3 ($18)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 18 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=800&q=60" alt="Web3" class="card-img">
+            <div class="card-content"><div class="info"><h3>18. Web3 & Smart Contracts</h3><p>Level 1 ($6) | Level 2 ($12) | Level 3 ($24)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 19 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=800&q=60" alt="Game Dev" class="card-img">
+            <div class="card-content"><div class="info"><h3>19. Game Development (Unity/Unreal)</h3><p>Level 1 ($5) | Level 2 ($11) | Level 3 ($22)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 20 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1633167606207-d840b5070fc2?auto=format&fit=crop&w=800&q=60" alt="3D Modeling" class="card-img">
+            <div class="card-content"><div class="info"><h3>20. 3D Modeling & Animation</h3><p>Level 1 ($4) | Level 2 ($9) | Level 3 ($18)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 21 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&w=800&q=60" alt="Podcast" class="card-img">
+            <div class="card-content"><div class="info"><h3>21. Podcast Production & Audio Eng.</h3><p>Level 1 ($3) | Level 2 ($6) | Level 3 ($12)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 22 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=60" alt="Penetration Testing" class="card-img">
+            <div class="card-content"><div class="info"><h3>22. Penetration Testing</h3><p>Level 1 ($6) | Level 2 ($13) | Level 3 ($26)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 23 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?auto=format&fit=crop&w=800&q=60" alt="Prompt Eng" class="card-img">
+            <div class="card-content"><div class="info"><h3>23. Prompt Engineering</h3><p>Level 1 ($3) | Level 2 ($6) | Level 3 ($12)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 24 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=800&q=60" alt="Robotics" class="card-img">
+            <div class="card-content"><div class="info"><h3>24. Robotics & IoT Programming</h3><p>Level 1 ($6) | Level 2 ($12) | Level 3 ($25)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 25 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=800&q=60" alt="Project Mgmt" class="card-img">
+            <div class="card-content"><div class="info"><h3>25. Project Management (Agile/Scrum)</h3><p>Level 1 ($4) | Level 2 ($8) | Level 3 ($16)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 26 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=800&q=60" alt="Financial Analysis" class="card-img">
+            <div class="card-content"><div class="info"><h3>26. Financial Analysis</h3><p>Level 1 ($4) | Level 2 ($9) | Level 3 ($18)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 27 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=60" alt="Fintech" class="card-img">
+            <div class="card-content"><div class="info"><h3>27. Fintech & Regulatory Compliance</h3><p>Level 1 ($5) | Level 2 ($10) | Level 3 ($20)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 28 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?auto=format&fit=crop&w=800&q=60" alt="Networking" class="card-img">
+            <div class="card-content"><div class="info"><h3>28. Networking & P2P Mesh Systems</h3><p>Level 1 ($5) | Level 2 ($11) | Level 3 ($22)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 29 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1510519138161-5364d8cd7bb5?auto=format&fit=crop&w=800&q=60" alt="Cryptography" class="card-img">
+            <div class="card-content"><div class="info"><h3>29. Cryptography & Data Privacy</h3><p>Level 1 ($6) | Level 2 ($12) | Level 3 ($25)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 30 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=60" alt="Software Testing" class="card-img">
+            <div class="card-content"><div class="info"><h3>30. Software Testing & QA</h3><p>Level 1 ($4) | Level 2 ($8) | Level 3 ($16)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 31 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1544383835-bda2bc66a55d?auto=format&fit=crop&w=800&q=60" alt="Database" class="card-img">
+            <div class="card-content"><div class="info"><h3>31. Database Administration (SQL/NoSQL)</h3><p>Level 1 ($4) | Level 2 ($9) | Level 3 ($18)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 32 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1618401471353-b98aedd04e11?auto=format&fit=crop&w=800&q=60" alt="DevOps" class="card-img">
+            <div class="card-content"><div class="info"><h3>32. DevOps & CI/CD Pipelines</h3><p>Level 1 ($6) | Level 2 ($12) | Level 3 ($24)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 33 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1629654297299-c8506221ca97?auto=format&fit=crop&w=800&q=60" alt="Linux" class="card-img">
+            <div class="card-content"><div class="info"><h3>33. Linux System Administration</h3><p>Level 1 ($4) | Level 2 ($8) | Level 3 ($16)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 34 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=800&q=60" alt="Architecture" class="card-img">
+            <div class="card-content"><div class="info"><h3>34. Software Architecture</h3><p>Level 1 ($6) | Level 2 ($13) | Level 3 ($26)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 35 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&fit=crop&w=800&q=60" alt="AR Dev" class="card-img">
+            <div class="card-content"><div class="info"><h3>35. Augmented Reality (AR) Dev</h3><p>Level 1 ($5) | Level 2 ($11) | Level 3 ($22)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 36 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1593508512255-86ab42a8e620?auto=format&fit=crop&w=800&q=60" alt="VR Dev" class="card-img">
+            <div class="card-content"><div class="info"><h3>36. Virtual Reality (VR) Dev</h3><p>Level 1 ($5) | Level 2 ($11) | Level 3 ($22)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 37 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1527474305487-b87b222841cc?auto=format&fit=crop&w=800&q=60" alt="NLP" class="card-img">
+            <div class="card-content"><div class="info"><h3>37. Natural Language Processing (NLP)</h3><p>Level 1 ($6) | Level 2 ($12) | Level 3 ($25)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 38 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&w=800&q=60" alt="Computer Vision" class="card-img">
+            <div class="card-content"><div class="info"><h3>38. Computer Vision Engineering</h3><p>Level 1 ($6) | Level 2 ($13) | Level 3 ($26)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 39 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=800&q=60" alt="Quantum" class="card-img">
+            <div class="card-content"><div class="info"><h3>39. Quantum Computing Basics</h3><p>Level 1 ($7) | Level 2 ($15) | Level 3 ($30)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 40 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=60" alt="Hardware" class="card-img">
+            <div class="card-content"><div class="info"><h3>40. Hardware Engineering Basics</h3><p>Level 1 ($5) | Level 2 ($10) | Level 3 ($20)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 41 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=60" alt="Business Intel" class="card-img">
+            <div class="card-content"><div class="info"><h3>41. Business Intelligence & Tableau</h3><p>Level 1 ($4) | Level 2 ($9) | Level 3 ($18)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 42 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=800&q=60" alt="Brand Strategy" class="card-img">
+            <div class="card-content"><div class="info"><h3>42. Brand Strategy & Identity</h3><p>Level 1 ($4) | Level 2 ($8) | Level 3 ($16)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 43 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?auto=format&fit=crop&w=800&q=60" alt="Public Speaking" class="card-img">
+            <div class="card-content"><div class="info"><h3>43. Public Speaking & Communication</h3><p>Level 1 ($3) | Level 2 ($6) | Level 3 ($12)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 44 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?auto=format&fit=crop&w=800&q=60" alt="Technical Writing" class="card-img">
+            <div class="card-content"><div class="info"><h3>44. Technical Writing</h3><p>Level 1 ($4) | Level 2 ($8) | Level 3 ($16)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 45 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?auto=format&fit=crop&w=800&q=60" alt="Translation" class="card-img">
+            <div class="card-content"><div class="info"><h3>45. Translation & Localization</h3><p>Level 1 ($3) | Level 2 ($6) | Level 3 ($12)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 46 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=60" alt="Growth Hacking" class="card-img">
+            <div class="card-content"><div class="info"><h3>46. Growth Hacking</h3><p>Level 1 ($4) | Level 2 ($9) | Level 3 ($18)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 47 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=60" alt="Venture Capital" class="card-img">
+            <div class="card-content"><div class="info"><h3>47. Venture Capital & Startup Funding</h3><p>Level 1 ($6) | Level 2 ($12) | Level 3 ($25)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 48 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&w=800&q=60" alt="Smart Contract Audit" class="card-img">
+            <div class="card-content"><div class="info"><h3>48. Smart Contract Auditing</h3><p>Level 1 ($7) | Level 2 ($14) | Level 3 ($28)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 49 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?auto=format&fit=crop&w=800&q=60" alt="Malware Analysis" class="card-img">
+            <div class="card-content"><div class="info"><h3>49. Malware Analysis & Reverse Eng.</h3><p>Level 1 ($7) | Level 2 ($14) | Level 3 ($28)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+        <!-- 50 -->
+        <div class="card">
+            <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?auto=format&fit=crop&w=800&q=60" alt="DAOs" class="card-img">
+            <div class="card-content"><div class="info"><h3>50. Decentralized Autonomous Orgs (DAOs)</h3><p>Level 1 ($5) | Level 2 ($10) | Level 3 ($20)</p></div><button class="btn-enroll">Join</button></div>
+        </div>
+    </div>
+
+</body>
+</html>
