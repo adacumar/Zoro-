@@ -1,306 +1,1992 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Mindmaze - The Global Ecosystem for Advanced Tech, Trading, and Professional Skills. Master programming, cybersecurity, AI agents, and financial markets.">
-    <title>Mindmaze - The Future of Professional Skills</title>
-    <!-- Favicon / Logo-ga ka muuqda tab-ka browser-ka -->
+    <meta name="description" content="Mindmaze - The Ultra-Premium Global Ecosystem for Advanced Tech, Trading, and Professional Skills. Powered by Next-Gen AI.">
+    <title>Mindmaze — The Future of Professional Skills & AI Intelligence</title>
+    
+    <!-- Favicon -->
     <link rel="icon" type="image/png" href="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=100&auto=format&fit=crop&q=80">
+    
+    <!-- Google Fonts: Inter & Outfit -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
         :root {
-            --bg-color: #050508;
-            --card-bg: rgba(20, 20, 35, 0.9);
-            --border-color: rgba(168, 85, 247, 0.3);
-            --accent-color: #c084fc;
-            --text-main: #f3f4f6;
-            --text-muted: #9ca3af;
-            --price-color: #4ade80;
+            --bg-primary: #030305;
+            --bg-secondary: #0a0a0f;
+            --card-bg: rgba(14, 14, 22, 0.7);
+            --card-hover: rgba(22, 22, 35, 0.85);
+            --border-color: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(192, 132, 252, 0.4);
+            
+            --accent-primary: #c084fc;
+            --accent-secondary: #6366f1;
+            --accent-gradient: linear-gradient(135deg, #c084fc 0%, #6366f1 50%, #38bdf8 100%);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --price-color: #34d399;
+            
+            --font-main: 'Inter', sans-serif;
+            --font-heading: 'Outfit', sans-serif;
+            
+            --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --shadow-glow: 0 0 40px rgba(192, 132, 252, 0.15);
+            --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+        .light {
+            --bg-primary: #f8fafc;
+            --bg-secondary: #f1f5f9;
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --card-hover: rgba(255, 255, 255, 0.95);
+            --border-color: rgba(0, 0, 0, 0.08);
+            --border-hover: rgba(147, 51, 234, 0.3);
+            --text-main: #0f172a;
+            --text-muted: #64748b;
+            --shadow-card: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        * {
+            box-sizing: border-box;
             margin: 0;
-            padding: 20px;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            line-height: 1.6;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* --- LOADING SCREEN --- */
+        #loader {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-primary);
+            z-index: 9999;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
         }
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            max-width: 700px;
+        #loader.hidden {
+            opacity: 0;
+            visibility: hidden;
         }
-        h1 {
-            color: var(--accent-color);
-            font-size: 3rem;
-            margin-bottom: 5px;
-            letter-spacing: 2px;
+        .loader-logo {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 800;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            animation: pulseGlow 2s infinite alternate;
         }
-        p {
+        .loader-spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid var(--border-color);
+            border-top-color: var(--accent-primary);
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        @keyframes pulseGlow {
+            0% { opacity: 0.6; filter: drop-shadow(0 0 10px rgba(192,132,252,0.2)); }
+            100% { opacity: 1; filter: drop-shadow(0 0 25px rgba(192,132,252,0.6)); }
+        }
+
+        /* --- AURORA ANIMATED BACKGROUND --- */
+        .aurora-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+        .aurora-blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(100px);
+            animation: floatBlob 20s infinite alternate ease-in-out;
+        }
+        .blob-1 {
+            top: -10%;
+            left: -10%;
+            width: 50vw;
+            height: 50vw;
+            background: rgba(192, 132, 252, 0.15);
+        }
+        .blob-2 {
+            bottom: -10%;
+            right: -10%;
+            width: 60vw;
+            height: 60vw;
+            background: rgba(99, 102, 241, 0.15);
+            animation-delay: -5s;
+        }
+        .blob-3 {
+            top: 40%;
+            left: 30%;
+            width: 40vw;
+            height: 40vw;
+            background: rgba(56, 189, 248, 0.1);
+            animation-delay: -10s;
+        }
+        @keyframes floatBlob {
+            0% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(50px, 80px) scale(1.1); }
+            100% { transform: translate(-30px, 50px) scale(0.95); }
+        }
+
+        /* --- STICKY NAVBAR --- */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(3, 3, 5, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition-smooth);
+        }
+        .light nav {
+            background: rgba(248, 250, 252, 0.7);
+        }
+        .nav-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 18px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-decoration: none;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
             color: var(--text-muted);
-            font-size: 1.05rem;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.2s;
         }
-        .badge {
-            background: linear-gradient(135deg, #1e1b4b, #311045);
-            border: 1px solid var(--accent-color);
-            color: var(--accent-color);
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent-primary);
+        }
+        .nav-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .icon-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        .icon-btn:hover {
+            border-color: var(--accent-primary);
+            transform: scale(1.05);
+        }
+        .btn-primary-nav {
+            background: var(--accent-gradient);
+            color: #fff;
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.9rem;
+            box-shadow: 0 4px 20px rgba(192, 132, 252, 0.3);
+            transition: var(--transition-smooth);
+        }
+        .btn-primary-nav:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(192, 132, 252, 0.5);
+        }
+
+        /* --- HERO SECTION --- */
+        header.hero {
+            padding: 180px 20px 100px;
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(192, 132, 252, 0.1);
+            border: 1px solid var(--border-hover);
             padding: 8px 18px;
             border-radius: 30px;
-            font-weight: bold;
-            display: inline-block;
-            margin-top: 15px;
-            box-shadow: 0 4px 20px rgba(192, 132, 252, 0.15);
+            color: var(--accent-primary);
+            font-weight: 600;
+            font-size: 0.85rem;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-glow);
+            animation: fadeInDown 0.8s ease;
         }
-        .container {
-            width: 100%;
-            max-width: 750px;
-        }
-        .card {
-            background: var(--card-bg);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--border-color);
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(3rem, 6vw, 5.5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
             margin-bottom: 25px;
-            border-radius: 16px;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+        .hero h1 span {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero p {
+            color: var(--text-muted);
+            font-size: clamp(1.1rem, 2vw, 1.35rem);
+            max-width: 750px;
+            margin: 0 auto 40px;
+            animation: fadeInUp 0.8s ease 0.4s both;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInUp 0.8s ease 0.6s both;
+            flex-wrap: wrap;
+        }
+        .btn-glow {
+            background: var(--accent-gradient);
+            color: white;
+            padding: 16px 36px;
+            border-radius: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 1.05rem;
+            box-shadow: 0 10px 30px rgba(192, 132, 252, 0.4);
+            transition: var(--transition-smooth);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-glow:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(192, 132, 252, 0.6);
+        }
+        .btn-glass {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            padding: 16px 36px;
+            border-radius: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 1.05rem;
+            backdrop-filter: blur(10px);
+            transition: var(--transition-smooth);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-glass:hover {
+            border-color: var(--accent-primary);
+            background: var(--card-hover);
+            transform: translateY(-3px);
+        }
+
+        /* --- STATISTICS SECTION --- */
+        .stats-section {
+            max-width: 1200px;
+            margin: 0 auto 100px;
+            padding: 0 20px;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 40px;
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-card);
+        }
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+        .stat-number {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            font-weight: 800;
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 8px;
+        }
+        .stat-label {
+            color: var(--text-muted);
+            font-weight: 500;
+            font-size: 1rem;
+        }
+
+        /* --- COURSES SECTION --- */
+        .courses-section {
+            max-width: 1300px;
+            margin: 0 auto 120px;
+            padding: 0 20px;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-header h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.2rem, 4vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 15px;
+            letter-spacing: -1px;
+        }
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* SEARCH & FILTER CONTROLS */
+        .controls-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .search-box {
+            position: relative;
+            flex: 1;
+            min-width: 280px;
+            max-width: 400px;
+        }
+        .search-box input {
+            width: 100%;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 14px 20px 14px 45px;
+            border-radius: 14px;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            outline: none;
+            transition: var(--transition-smooth);
+            backdrop-filter: blur(10px);
+        }
+        .search-box input:focus {
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 20px rgba(192, 132, 252, 0.2);
+        }
+        .search-box i {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+        .filter-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            padding: 10px 20px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            backdrop-filter: blur(10px);
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--accent-gradient);
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(192, 132, 252, 0.3);
+        }
+
+        /* COURSES GRID (EXACTLY 15 COURSES) */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+            gap: 30px;
+        }
+        .course-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
             overflow: hidden;
+            backdrop-filter: blur(16px);
+            transition: var(--transition-smooth);
             display: flex;
             flex-direction: column;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            box-shadow: var(--shadow-card);
         }
-        .card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 10px 30px rgba(192, 132, 252, 0.3);
-            border-color: var(--accent-color);
+        .course-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--border-hover);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), var(--shadow-glow);
         }
-        .card-img {
+        .course-img-wrapper {
+            position: relative;
             width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-bottom: 1px solid var(--border-color);
+            height: 220px;
+            overflow: hidden;
         }
-        .card-content {
-            padding: 20px;
+        .course-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .course-card:hover .course-img-wrapper img {
+            transform: scale(1.08);
+        }
+        .course-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(3, 3, 5, 0.75);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            color: var(--accent-primary);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .favorite-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(3, 3, 5, 0.75);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            color: var(--text-muted);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+        }
+        .favorite-btn:hover, .favorite-btn.active {
+            color: #f43f5e;
+            border-color: rgba(244, 63, 94, 0.4);
+            transform: scale(1.1);
+        }
+        .course-content {
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+        .course-title {
+            font-family: var(--font-heading);
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--text-main);
+            line-height: 1.3;
+        }
+        .pricing-table {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 12px 15px;
+            margin-bottom: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .info h3 {
-            margin: 0 0 5px 0;
-            color: #e879f9;
-            font-size: 1.25rem;
+        .light .pricing-table {
+            background: rgba(0, 0, 0, 0.03);
         }
-        .info p {
-            margin: 0;
-            color: var(--price-color);
-            font-weight: 600;
+        .price-tier {
+            text-align: center;
+            flex: 1;
+        }
+        .price-tier:not(:last-child) {
+            border-right: 1px solid var(--border-color);
+        }
+        .tier-name {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 2px;
+        }
+        .tier-price {
+            font-family: var(--font-heading);
             font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--price-color);
         }
-        .btn-enroll {
-            background: linear-gradient(135deg, #7c3aed, #c084fc);
+        .course-footer {
+            margin-top: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .btn-join {
+            background: var(--accent-gradient);
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: bold;
+            padding: 12px 24px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
             text-decoration: none;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(192, 132, 252, 0.3);
+            transition: var(--transition-smooth);
+            width: 100%;
+            justify-content: center;
+        }
+        .btn-join:hover {
+            opacity: 0.95;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(192, 132, 252, 0.5);
+        }
+
+        /* --- WHY CHOOSE MINDMAZE --- */
+        .features-section {
+            max-width: 1300px;
+            margin: 0 auto 120px;
+            padding: 0 20px;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        .feature-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 40px;
+            backdrop-filter: blur(16px);
+            transition: var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+        .feature-card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-glow);
+        }
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(192, 132, 252, 0.1);
+            border: 1px solid var(--border-hover);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--accent-primary);
+            margin-bottom: 25px;
+        }
+        .feature-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        /* --- ROADMAP SECTION --- */
+        .roadmap-section {
+            max-width: 1000px;
+            margin: 0 auto 120px;
+            padding: 0 20px;
+        }
+        .roadmap-timeline {
+            position: relative;
+            padding-left: 40px;
+        }
+        .roadmap-timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: var(--border-color);
+        }
+        .roadmap-item {
+            position: relative;
+            margin-bottom: 40px;
+        }
+        .roadmap-dot {
+            position: absolute;
+            left: -40px;
+            top: 0;
+            width: 32px;
+            height: 32px;
+            background: var(--card-bg);
+            border: 2px solid var(--accent-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-primary);
+            font-size: 0.8rem;
+        }
+        .roadmap-content {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(16px);
+        }
+        .roadmap-content h3 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .roadmap-content p {
+            color: var(--text-muted);
+        }
+
+        /* --- TESTIMONIALS SECTION --- */
+        .testimonials-section {
+            max-width: 1300px;
+            margin: 0 auto 120px;
+            padding: 0 20px;
+        }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        .testimonial-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 35px;
+            backdrop-filter: blur(16px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .testimonial-text {
+            color: var(--text-main);
+            font-size: 1.05rem;
+            font-style: italic;
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--accent-primary);
+        }
+        .author-info h4 {
+            font-family: var(--font-heading);
+            font-size: 1.05rem;
+            font-weight: 700;
+        }
+        .author-info p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        /* --- FAQ SECTION --- */
+        .faq-section {
+            max-width: 900px;
+            margin: 0 auto 120px;
+            padding: 0 20px;
+        }
+        .faq-accordion {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .faq-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
+            backdrop-filter: blur(16px);
+            transition: var(--transition-smooth);
+        }
+        .faq-question {
+            padding: 25px;
+            font-family: var(--font-heading);
+            font-size: 1.15rem;
+            font-weight: 700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+        }
+        .faq-question i {
+            transition: transform 0.3s ease;
+            color: var(--accent-primary);
+        }
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 25px;
+            color: var(--text-muted);
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        .faq-item.active .faq-answer {
+            max-height: 200px;
+            padding: 0 25px 25px;
+        }
+
+        /* --- NEWSLETTER / CONTACT SECTION --- */
+        .contact-section {
+            max-width: 1000px;
+            margin: 0 auto 120px;
+            padding: 0 20px;
+        }
+        .contact-box {
+            background: linear-gradient(135deg, rgba(192, 132, 252, 0.1), rgba(99, 102, 241, 0.1));
+            border: 1px solid var(--border-hover);
+            border-radius: 30px;
+            padding: 60px 40px;
+            text-align: center;
+            backdrop-filter: blur(20px);
+            box-shadow: var(--shadow-glow);
+        }
+        .contact-box h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(2rem, 3.5vw, 2.8rem);
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+        .contact-box p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 35px;
+        }
+        .newsletter-form {
+            display: flex;
+            gap: 15px;
+            max-width: 500px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .newsletter-form input {
+            flex: 1;
+            min-width: 280px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 16px 20px;
+            border-radius: 14px;
+            color: var(--text-main);
+            font-size: 1rem;
+            outline: none;
+            backdrop-filter: blur(10px);
+        }
+        .newsletter-form input:focus {
+            border-color: var(--accent-primary);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            padding: 80px 20px 40px;
+        }
+        .footer-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+        .footer-col h4 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--text-main);
+        }
+        .footer-col ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .footer-col ul a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+        .footer-col ul a:hover {
+            color: var(--accent-primary);
+        }
+        .footer-bottom {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding-top: 30px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+        .social-icons a {
+            color: var(--text-muted);
+            width: 36px;
+            height: 36px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: var(--transition-smooth);
+        }
+        .social-icons a:hover {
+            color: var(--accent-primary);
+            border-color: var(--accent-primary);
+            transform: translateY(-2px);
+        }
+
+        /* --- FLOATING AI ASSISTANT WIDGET --- */
+        .ai-float-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 65px;
+            height: 65px;
+            background: var(--accent-gradient);
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(192, 132, 252, 0.5);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-smooth);
+            animation: pulseGlow 2s infinite alternate;
+        }
+        .ai-float-btn:hover {
+            transform: scale(1.1) rotate(10deg);
+        }
+        .ai-chat-window {
+            position: fixed;
+            bottom: 110px;
+            right: 30px;
+            width: 400px;
+            height: 550px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-hover);
+            border-radius: 24px;
+            backdrop-filter: blur(25px);
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), var(--shadow-glow);
+            transform: translateY(20px) scale(0.95);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition-smooth);
+        }
+        .ai-chat-window.active {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+            visibility: visible;
+        }
+        .ai-chat-header {
+            padding: 20px;
+            background: rgba(192, 132, 252, 0.1);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .ai-chat-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .ai-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--accent-gradient);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+        .ai-chat-title h4 {
+            font-family: var(--font-heading);
+            font-size: 1.1rem;
+            font-weight: 700;
+        }
+        .ai-chat-title p {
+            font-size: 0.75rem;
+            color: var(--price-color);
+        }
+        .ai-close-btn {
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .ai-close-btn:hover {
+            color: var(--text-main);
+        }
+        .ai-chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .ai-msg {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 16px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        .ai-msg.incoming {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--border-color);
+            align-self: flex-start;
+            border-top-left-radius: 4px;
+        }
+        .ai-msg.outgoing {
+            background: var(--accent-gradient);
+            color: white;
+            align-self: flex-end;
+            border-top-right-radius: 4px;
+        }
+        .ai-chat-input-area {
+            padding: 15px;
+            border-top: 1px solid var(--border-color);
+            background: rgba(0, 0, 0, 0.2);
+            display: flex;
+            gap: 10px;
+        }
+        .ai-chat-input-area input {
+            flex: 1;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 12px 16px;
+            border-radius: 12px;
+            color: var(--text-main);
+            font-size: 0.9rem;
+            outline: none;
+        }
+        .ai-chat-input-area input:focus {
+            border-color: var(--accent-primary);
+        }
+        .ai-send-btn {
+            background: var(--accent-gradient);
+            color: white;
+            border: none;
+            width: 45px;
+            height: 45px;
+            border-radius: 12px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             transition: opacity 0.2s;
         }
-        .btn-enroll:hover {
+        .ai-send-btn:hover {
             opacity: 0.9;
+        }
+
+        /* BACK TO TOP BUTTON */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 45px;
+            height: 45px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-main);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition-smooth);
+            backdrop-filter: blur(10px);
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-to-top:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-3px);
+        }
+
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .hero { padding: 140px 20px 80px; }
+            .ai-chat-window { width: 92vw; right: 4vw; height: 500px; }
+            .controls-bar { flex-direction: column; align-items: stretch; }
+            .search-box { max-width: 100%; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>MINDMAZE</h1>
-        <p>We Transcend Dimensions. The Global Ecosystem for Advanced Tech, Trading & Professional Skills.<br>Instructors earn 70%, Platform retains 30%.</p>
-        <div class="badge">Model: 30% Platform | 70% Instructor</div>
+    <!-- LOADING SCREEN -->
+    <div id="loader">
+        <div class="loader-logo">MINDMAZE</div>
+        <div class="loader-spinner"></div>
+    </div>
+
+    <!-- AURORA ANIMATED BACKGROUND -->
+    <div class="aurora-bg">
+        <div class="aurora-blob blob-1"></div>
+        <div class="aurora-blob blob-2"></div>
+        <div class="aurora-blob blob-3"></div>
+    </div>
+
+    <!-- STICKY NAVBAR -->
+    <nav>
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <i class="fa-solid fa-cube"></i> MINDMAZE
+            </a>
+            <ul class="nav-links">
+                <li><a href="#courses" class="active">Courses</a></li>
+                <li><a href="#features">Why Mindmaze</a></li>
+                <li><a href="#roadmap">Roadmap</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <div class="nav-actions">
+                <button class="icon-btn" id="themeToggle" title="Toggle Theme">
+                    <i class="fa-solid fa-moon" id="themeIcon"></i>
+                </button>
+                <a href="#courses" class="btn-primary-nav">Explore Academy</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- LUXURY HERO SECTION -->
+    <header class="hero">
+        <div class="hero-badge">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> Next-Gen AI Learning Ecosystem
+        </div>
+        <h1>Master Advanced Tech & Trading with <span>Infinite Precision</span></h1>
+        <p>Experience the world's most luxurious AI-powered education platform. Built for elite developers, algorithmic traders, and cybersecurity pioneers.</p>
+        <div class="hero-buttons">
+            <a href="#courses" class="btn-glow">
+                Explore 15 Elite Skills <i class="fa-solid fa-arrow-right"></i>
+            </a>
+            <a href="#roadmap" class="btn-glass">
+                View 2026 Roadmap
+            </a>
+        </div>
     </header>
 
-    <div class="container">
-        <!-- 1 -->
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80" alt="Full-Stack Programming" class="card-img">
-            <div class="card-content"><div class="info"><h3>1. Full-Stack Programming</h3><p>Level 1 ($5) | Level 2 ($10) | Level 3 ($20)</p></div><a href="https://www.google.com/search?q=Full-Stack+Programming+tutorial+video" target="_blank" class="btn-enroll">Join</a></div>
+    <!-- STATISTICS SECTION -->
+    <section class="stats-section">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number" data-target="15">0</div>
+                <div class="stat-label">Elite Masterclasses</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="99">0</div>
+                <div class="stat-label">Success Rate (%)</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="50">0</div>
+                <div class="stat-label">Global Mentors (k+)</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" data-target="24">0</div>
+                <div class="stat-label">AI Intelligence Support</div>
+            </div>
         </div>
-        
-        <!-- 2 -->
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&auto=format&fit=crop&q=80" alt="Cybersecurity" class="card-img">
-            <div class="card-content"><div class="info"><h3>2. Cybersecurity & Ethical Hacking</h3><p>Level 1 ($6) | Level 2 ($12) | Level 3 ($25)</p></div><a href="https://www.google.com/search?q=Cybersecurity+course+video" target="_blank" class="btn-enroll">Join</a></div>
+    </section>
+
+    <!-- FEATURED COURSES SECTION (EXACTLY 15 COURSES) -->
+    <section class="courses-section" id="courses">
+        <div class="section-header">
+            <h2>The Elite Curriculum</h2>
+            <p>Select your path. Scalable micro-pricing designed for absolute accessibility and unmatched depth.</p>
         </div>
-        
-        <!-- 3 -->
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1677442136019-21780efad99a?w=600&auto=format&fit=crop&q=80" alt="AI Agents" class="card-img">
-            <div class="card-content"><div class="info"><h3>3. AI Agents & Automation</h3><p>Level 1 ($5) | Level 2 ($10) | Level 3 ($22)</p></div><a href="https://www.google.com/search?q=AI+Agents+and+Automation+tutorial" target="_blank" class="btn-enroll">Join</a></div>
+
+        <div class="controls-bar">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="courseSearch" placeholder="Search programming, crypto, AI...">
+            </div>
+            <div class="filter-tabs">
+                <button class="filter-btn active" data-filter="all">All Skills</button>
+                <button class="filter-btn" data-filter="small">Small Skills ($3-$10)</button>
+                <button class="filter-btn" data-filter="advanced">Advanced Skills ($4-$11)</button>
+            </div>
         </div>
-        
-        <!-- 4 -->
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1621416894569-0f39ed31d247?w=600&auto=format&fit=crop&q=80" alt="Crypto" class="card-img">
-            <div class="card-content"><div class="info"><h3>4. Cryptocurrency & Blockchain</h3><p>Level 1 ($4) | Level 2 ($9) | Level 3 ($18)</p></div><a href="https://www.google.com/search?q=Cryptocurrency+and+Blockchain+course" target="_blank" class="btn-enroll">Join</a></div>
+
+        <div class="courses-grid" id="coursesGrid">
+            <!-- 1. Full-Stack Programming (Small) -->
+            <div class="course-card" data-category="small" data-title="Full-Stack Programming">
+                <div class="course-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=600&auto=format&fit=crop&q=80" alt="Full-Stack Programming">
+                    <span class="course-badge">Small Skill</span>
+                    <button class="favorite-btn" title="Save to Favorites"><i class="fa-regular fa-heart"></i></button>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">1. Full-Stack Programming</h3>
+                    <div class="pricing-table">
+                        <div class="price-tier"><div class="tier-name">Level 1</div><div class="tier-price">$3</div></div>
+                        <div class="price-tier"><div class="tier-name">Level 2</div><div class="tier-price">$5</div></div>
+                        <div class="price-tier"><div class="tier-name">Level 3</div><div class="tier-price">$10</div></div>
+                    </div>
+                    <div class="course-footer">
+                        <a href="https://www.google.com/search?q=Full-Stack+Programming+tutorial+video" target="_blank" class="btn-join">
+                            Join Masterclass <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Cybersecurity & Ethical Hacking (Small) -->
+            <div class="course-card" data-category="small" data-title="Cybersecurity & Ethical Hacking">
+                <div class="course-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&auto=format&fit=crop&q=80" alt="Cybersecurity">
+                    <span class="course-badge">Small Skill</span>
+                    <button class="favorite-btn" title="Save to Favorites"><i class="fa-regular fa-heart"></i></button>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">2. Cybersecurity & Ethical Hacking</h3>
+                    <div class="pricing-table">
+                        <div class="price-tier"><div class="tier-name">Level 1</div><div class="tier-price">$3</div></div>
+                        <div class="price-tier"><div class="tier-name">Level 2</div><div class="tier-price">$5</div></div>
+                        <div class="price-tier"><div class="tier-name">Level 3</div><div class="tier-price">$10</div></div>
+                    </div>
+                    <div class="course-footer">
+                        <a href="https://www.google.com/search?q=Cybersecurity+course+video" target="_blank" class="btn-join">
+                            Join Masterclass <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. AI Agents & Automation (Small) -->
+            <div class="course-card" data-category="small" data-title="AI Agents & Automation">
+                <div class="course-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1677442136019-21780efad99a?w=600&auto=format&fit=crop&q=80" alt="AI Agents">
+                    <span class="course-badge">Small Skill</span>
+                    <button class="favorite-btn" title="Save to Favorites"><i class="fa-regular fa-heart"></i></button>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">3. AI Agents & Automation</h3>
+                    <div class="pricing-table">
+                        <div class="price-tier"><div class="tier-name">Level 1</div><div class="tier-price">$3</div></div>
+                        <div class="price-tier"><div class="tier-name">Level 2</div><div class="tier-price">$5</div></div>
+                        <div class="price-tier"><div class="tier-name">Level 3</div><div class="tier-price">$10</div></div>
+                    </div>
+                    <div class="course-footer">
+                        <a href="https://www.google.com/search?q=AI+Agents+and+Automation+tutorial" target="_blank" class="btn-join">
+                            Join Masterclass <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. Cryptocurrency & Blockchain (Small) -->
+            <div class="course-card" data-category="small" data-title="Cryptocurrency & Blockchain">
+                <div class="course-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1621416894569-0f39ed31d247?w=600&auto=format&fit=crop&q=80" alt="Crypto">
+                    <span class="course-badge">Small Skill</span>
+                    <button class="favorite-btn" title="Save to Favorites"><i class="fa-regular fa-heart"></i></button>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">4. Cryptocurrency & Blockchain</h3>
+                    <div class="pricing-table">
+                        <div class="price-tier"><div class="tier-name">Level 1</div><div class="tier-price">$3</div></div>
+                        <div class="price-tier"><div class="tier-name">Level 2</div><div class="tier-price">$5</div></div>
+                        <div class="price-tier"><div class="tier-name">Level 3</div><div class="tier-price">$10</div></div>
+                    </div>
+                    <div class="course-footer">
+                        <a href="https://www.google.com/search?q=Cryptocurrency+and+Blockchain+course" target="_blank" class="btn-join">
+                            Join Masterclass <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. Forex Trading (Small) -->
+            <div class="course-card" data-category="small" data-title="Forex Trading">
+                <div class="course-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&auto=format&fit=crop&q=80" alt="Forex">
+                    <span class="course-badge">Small Skill</span>
+                    <button class="favorite-btn" title="Save to Favorites"><i class="fa-regular fa-heart"></i></button>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">5. Forex Trading Strategy</h3>
+                    <div class="pricing-table">
+                        <div class="price-tier"><div class="tier-name">Level 1</div><div class="tier-price">$3</div></div>
+                        <div class="price-tier"><div class="tier-name">Level 2</div><div class="tier-price">$5</div></div>
+                        <div class="price-tier"><div class="tier-name">Level 3</div><div class="tier-price">$10</div></div>
+                    </div>
+                    <div class="course-footer">
+                        <a href="https://www.google.com/search?q=Forex+Trading+strategy+video" target="_blank" class="btn-join">
+                            Join Masterclass <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. Stock Market & Options (Small) -->
+            <div class="course-card" data-category="small" data-title="Stock Market & Options">
+                <div class="course-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=600&auto=format&fit=crop&q=80" alt="Stock Market">
+                    <span class="course-badge">Small Skill</span>
+                    <button class="favorite-btn" title="Save to Favorites"><i class="fa-regular fa-heart"></i></button>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">6. Stock Market & Options</h3>
+                    <div class="pricing-table">
+                        <div class="price-tier"><div class="tier-name">Level 1</div><div class="tier-price">$3</div></div>
+                        <div class="price-tier"><div class="tier-name">Level 2</div><div class="tier-price">$5</div></div>
+                        <div class="price-tier"><div class="tier-name">Level 3</div><div class="tier-price">$10</div></div>
+                    </div>
+                    <div class="course-footer">
+                        <a href="https://www.google.com/search?q=Stock+Market+and+Options+trading" target="_blank" class="btn-join">
+                            Join Masterclass <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 7. Mobile App Development (Small) -->
+            <div class="course-card" data-category="small" data-title="Mobile App Development">
+                <div class="course-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&auto=format&fit=crop&q=80" alt="Mobile App">
+                    <span class="course-badge">Small Skill</span>
+                    <button class="favorite-btn" title="Save to Favorites"><i class="fa-regular fa-heart"></i></button>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">7. Mobile App Development</h3>
+                    <div class="pricing-table">
+                        <div class="price-tier"><div class="tier-name">Level 1</div><div class="tier-price">$3</div></div>
+                        <div class="price-tier"><div class="tier-name">Level 2</div><div class="tier-price">$5</div></div>
+                        <div class="price-tier"><div class="tier-name">Level 3</div><div class="tier-price">$10</div></div>
+                    </div>
+                    <div class="course-footer">
+                        <a href="https://www.google.com/search?q=Mobile+App+Development+tutorial" target="_blank" class="btn-join">
+                            Join Masterclass <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 8. Cloud Computing (Small) -->
+            <div class="course-card" data-category="small" data-title="Cloud Computing">
+                <div class="course-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=80" alt="Cloud">
+                    <span class="course-badge">Small Skill</span>
+                    <button class="favorite-btn" title="Save to Favorites"><i class="fa-regular fa-heart"></i></button>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">8. Cloud Computing (AWS/Azure)</h3>
+                    <div class="pricing-table">
+                        <div class="price-tier"><div class="tier-name">Level 1</div><div class="tier-price">$3</div></div>
+                        <div class="price-tier"><div class="tier-name">Level 2</div><div class="tier-price">$5</div></div>
+                        <div class="price-tier"><div class="tier-name">Level 3</div><div class="tier-price">$10</div></div>
+                    </div>
+                    <div class="course-footer">
+                        <a href="https://www.google.com/search?q=Cloud+Computing+AWS+Azure+course" target="_blank" class="btn-join">
+                            Join Masterclass <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 9. Machine Learning & Data Science (Advanced) -->
+            <div class="course-card" data-category="advanced" data-title="Machine Learning & Data Science">
+                <div class="course-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=80" alt="Machine Learning">
+                    <span class="course-badge" style="color: #38bdf8;">Advanced Skill</span>
+                    <button class="favorite-btn" title="Save to Favorites"><i class="fa-regular fa-heart"></i></button>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">9. Machine Learning & Data Science</h3>
+                    <div class="pricing-table">
+                        <div class="price-tier"><div class="tier-name">Level 1</div><div class="tier-price">$4</div></div>
+                        <div class="price-tier"><div class="tier-name">Level 2</div><div class="tier-price">$7</div></div>
+                        <div class="price-tier"><div class="tier-name">Level 3</div><div class="tier-price">$11</div></div>
+                    </div>
+                    <div class="course-footer">
+                        <a href="https://www.google.com/search?q=Machine+Learning+and+Data+Science" target="_blank" class="btn-join">
+                            Join Masterclass <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 10. UI/UX Design (Advanced) -->
+            <div class="course-card" data-category="advanced" data-title="UI/UX Design">
+                <div class="course-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=600&auto=format&fit=crop&q=80" alt="UI/UX">
+                    <span class="course-badge" style="color: #38bdf8;">Advanced Skill</span>
+                    <button class="favorite-btn" title="Save to Favorites"><i class="fa-regular fa-heart"></i></button>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">10. UI/UX Design Architecture</h3>
+                    <div class="pricing-table">
+                        <div class="price-tier"><div class="tier-name">Level 1</div><div class="tier-price">$4</div></div>
+                        <div class="price-tier"><div class="tier-name">Level 2</div><div class="tier-price">$7</div></div>
+                        <div class="price-tier"><div class="tier-name">Level 3</div><div class="tier-price">$11</div></div>
+                    </div>
+                    <div class="course-footer">
+                        <a href="https://www.google.com/search?q=UI+UX+Design+tutorial" target="_blank" class="btn-join">
+                            Join Masterclass <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 11. Web3 & Smart Contracts (Advanced) -->
+            <div class="course-card" data-category="advanced" data-title="Web3 & Smart Contracts">
+                <div class="course-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600&auto=format&fit=crop&q=80" alt="Web3">
+                    <span class="course-badge" style="color: #38bdf8;">Advanced Skill</span>
+                    <button class="favorite-btn" title="Save to Favorites"><i class="fa-regular fa-heart"></i></button>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">11. Web3 & Smart Contracts</h3>
+                    <div class="pricing-table">
+                        <div class="price-tier"><div class="tier-name">Level 1</div><div class="tier-price">$4</div></div>
+                        <div class="price-tier"><div class="tier-name">Level 2</div><div class="tier-price">$7</div></div>
+                        <div class="price-tier"><div class="tier-name">Level 3</div><div class="tier-price">$11</div></div>
+                    </div>
+                    <div class="course-footer">
+                        <a href="https://www.google.com/search?q=Web3+and+Smart+Contracts+development" target="_blank" class="btn-join">
+                            Join Masterclass <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 12. Penetration Testing (Advanced) -->
+            <div class="course-card" data-category="advanced" data-title="Penetration Testing">
+                <div class="course-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=80" alt="Penetration Testing">
+                    <span class="course-badge" style="color: #38bdf8;">Advanced Skill</span>
+                    <button class="favorite-btn" title="Save to Favorites"><i class="fa-regular fa-heart"></i></button>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">12. Advanced Penetration Testing</h3>
+                    <div class="pricing-table">
+                        <div class="price-tier"><div class="tier-name">Level 1</div><div class="tier-price">$4</div></div>
+                        <div class="price-tier"><div class="tier-name">Level 2</div><div class="tier-price">$7</div></div>
+                        <div class="price-tier"><div class="tier-name">Level 3</div><div class="tier-price">$11</div></div>
+                    </div>
+                    <div class="course-footer">
+                        <a href="https://www.google.com/search?q=Penetration+Testing+ethical+hacking" target="_blank" class="btn-join">
+                            Join Masterclass <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 13. Prompt Engineering (Advanced) -->
+            <div class="course-card" data-category="advanced" data-title="Prompt Engineering">
+                <div class="course-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80" alt="Prompt Engineering">
+                    <span class="course-badge" style="color: #38bdf8;">Advanced Skill</span>
+                    <button class="favorite-btn" title="Save to Favorites"><i class="fa-regular fa-heart"></i></button>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">13. AI Prompt Engineering & LLMs</h3>
+                    <div class="pricing-table">
+                        <div class="price-tier"><div class="tier-name">Level 1</div><div class="tier-price">$4</div></div>
+                        <div class="price-tier"><div class="tier-name">Level 2</div><div class="tier-price">$7</div></div>
+                        <div class="price-tier"><div class="tier-name">Level 3</div><div class="tier-price">$11</div></div>
+                    </div>
+                    <div class="course-footer">
+                        <a href="https://www.google.com/search?q=Prompt+Engineering+tutorial" target="_blank" class="btn-join">
+                            Join Masterclass <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 14. Robotics & IoT Programming (Advanced) -->
+            <div class="course-card" data-category="advanced" data-title="Robotics & IoT Programming">
+                <div class="course-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=80" alt="Robotics">
+                    <span class="course-badge" style="color: #38bdf8;">Advanced Skill</span>
+                    <button class="favorite-btn" title="Save to Favorites"><i class="fa-regular fa-heart"></i></button>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">14. Robotics & IoT Architecture</h3>
+                    <div class="pricing-table">
+                        <div class="price-tier"><div class="tier-name">Level 1</div><div class="tier-price">$4</div></div>
+                        <div class="price-tier"><div class="tier-name">Level 2</div><div class="tier-price">$7</div></div>
+                        <div class="price-tier"><div class="tier-name">Level 3</div><div class="tier-price">$11</div></div>
+                    </div>
+                    <div class="course-footer">
+                        <a href="https://www.google.com/search?q=Robotics+and+IoT+Programming" target="_blank" class="btn-join">
+                            Join Masterclass <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 15. Networking & P2P Mesh Systems (Advanced) -->
+            <div class="course-card" data-category="advanced" data-title="Networking & P2P Mesh Systems">
+                <div class="course-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&auto=format&fit=crop&q=80" alt="Networking">
+                    <span class="course-badge" style="color: #38bdf8;">Advanced Skill</span>
+                    <button class="favorite-btn" title="Save to Favorites"><i class="fa-regular fa-heart"></i></button>
+                </div>
+                <div class="course-content">
+                    <h3 class="course-title">15. Networking & P2P Mesh Systems</h3>
+                    <div class="pricing-table">
+                        <div class="price-tier"><div class="tier-name">Level 1</div><div class="tier-price">$4</div></div>
+                        <div class="price-tier"><div class="tier-name">Level 2</div><div class="tier-price">$7</div></div>
+                        <div class="price-tier"><div class="tier-name">Level 3</div><div class="tier-price">$11</div></div>
+                    </div>
+                    <div class="course-footer">
+                        <a href="https://www.google.com/search?q=Networking+and+P2P+Mesh+Systems" target="_blank" class="btn-join">
+                            Join Masterclass <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <!-- 5 -->
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=600&auto=format&fit=crop&q=80" alt="Forex" class="card-img">
-            <div class="card-content"><div class="info"><h3>5. Forex Trading</h3><p>Level 1 ($4) | Level 2 ($8) | Level 3 ($15)</p></div><a href="https://www.google.com/search?q=Forex+Trading+strategy+video" target="_blank" class="btn-enroll">Join</a></div>
+    </section>
+
+    <!-- WHY CHOOSE MINDMAZE -->
+    <section class="features-section" id="features">
+        <div class="section-header">
+            <h2>Why Elite Learners Choose Mindmaze</h2>
+            <p>Engineered to outperform traditional institutions with supreme architectural elegance.</p>
         </div>
-        
-        <!-- 6 -->
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=600&auto=format&fit=crop&q=80" alt="Stock Market" class="card-img">
-            <div class="card-content"><div class="info"><h3>6. Stock Market & Options</h3><p>Level 1 ($4) | Level 2 ($8) | Level 3 ($16)</p></div><a href="https://www.google.com/search?q=Stock+Market+and+Options+trading" target="_blank" class="btn-enroll">Join</a></div>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-brain"></i></div>
+                <h3>Built-in Neural AI Assistant</h3>
+                <p>Instant query resolution, custom career path generation, and real-time code explanation powered by cutting-edge LLMs.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                <h3>Enterprise Security & Mesh</h3>
+                <p>Decentralized infrastructure protocols ensuring absolute privacy, zero tracking, and ultra-low latency worldwide.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon"><i class="fa-solid fa-bolt"></i></div>
+                <h3>Micro-Pricing Economics</h3>
+                <p>Unmatched value with tiered masterclasses starting from $3. 70% revenue sharing directly supporting elite global creators.</p>
+            </div>
         </div>
-        
-        <!-- 7 -->
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=600&auto=format&fit=crop&q=80" alt="Mobile App" class="card-img">
-            <div class="card-content"><div class="info"><h3>7. Mobile App Development</h3><p>Level 1 ($5) | Level 2 ($10) | Level 3 ($20)</p></div><a href="https://www.google.com/search?q=Mobile+App+Development+tutorial" target="_blank" class="btn-enroll">Join</a></div>
+    </section>
+
+    <!-- ROADMAP SECTION -->
+    <section class="roadmap-section" id="roadmap">
+        <div class="section-header">
+            <h2>The 2026 Strategic Roadmap</h2>
+            <p>Our relentless pursuit of absolute market dominance and technical superiority.</p>
         </div>
-        
-        <!-- 8 -->
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=600&auto=format&fit=crop&q=80" alt="Cloud" class="card-img">
-            <div class="card-content"><div class="info"><h3>8. Cloud Computing (AWS/Azure)</h3><p>Level 1 ($5) | Level 2 ($11) | Level 3 ($22)</p></div><a href="https://www.google.com/search?q=Cloud+Computing+AWS+Azure+course" target="_blank" class="btn-enroll">Join</a></div>
+        <div class="roadmap-timeline">
+            <div class="roadmap-item">
+                <div class="roadmap-dot"><i class="fa-solid fa-check"></i></div>
+                <div class="roadmap-content">
+                    <h3>Q1 2026 — Platform Architecture & Core Ecosystem</h3>
+                    <p>Deployment of the high-speed glassmorphic UI, responsive grids, and foundational course modules.</p>
+                </div>
+            </div>
+            <div class="roadmap-item">
+                <div class="roadmap-dot"><i class="fa-solid fa-spinner"></i></div>
+                <div class="roadmap-content">
+                    <h3>Q2 2026 — AI Intelligence Integration</h3>
+                    <p>Integration of the floating Neural AI Assistant with OpenAI, Gemini, and Claude API preparation layer.</p>
+                </div>
+            </div>
+            <div class="roadmap-item">
+                <div class="roadmap-dot">3</div>
+                <div class="roadmap-content">
+                    <h3>Q3 2026 — P2P Mesh & Decentralized Delivery</h3>
+                    <p>Launch of private high-speed mesh distribution nodes for secure, censor-resistant content streaming.</p>
+                </div>
+            </div>
+            <div class="roadmap-item">
+                <div class="roadmap-dot">4</div>
+                <div class="roadmap-content">
+                    <h3>Q4 2026 — Global Autonomous Expansion</h3>
+                    <p>Full automation of creator payouts (70/30 model) and expansion to 50+ localized tech languages.</p>
+                </div>
+            </div>
         </div>
-        
-        <!-- 9 -->
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=80" alt="Machine Learning" class="card-img">
-            <div class="card-content"><div class="info"><h3>9. Machine Learning & Data Science</h3><p>Level 1 ($6) | Level 2 ($12) | Level 3 ($25)</p></div><a href="https://www.google.com/search?q=Machine+Learning+and+Data+Science" target="_blank" class="btn-enroll">Join</a></div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section class="testimonials-section" id="testimonials">
+        <div class="section-header">
+            <h2>Trusted by Visionaries</h2>
+            <p>Hear from engineers, traders, and founders who leveled up their expertise.</p>
         </div>
-        
-        <!-- 10 -->
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?w=600&auto=format&fit=crop&q=80" alt="UI/UX" class="card-img">
-            <div class="card-content"><div class="info"><h3>10. UI/UX Design</h3><p>Level 1 ($4) | Level 2 ($7) | Level 3 ($15)</p></div><a href="https://www.google.com/search?q=UI+UX+Design+tutorial" target="_blank" class="btn-enroll">Join</a></div>
+        <div class="testimonials-grid">
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Mindmaze feels like using Apple or Stripe. The UI is breathtaking, and the AI assistant answers complex coding queries in seconds."</p>
+                <div class="testimonial-author">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=100&auto=format&fit=crop&q=80" alt="Sarah J." class="author-avatar">
+                    <div class="author-info">
+                        <h4>Sarah Jenkins</h4>
+                        <p>Senior Full-Stack Engineer</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"The Forex and Crypto masterclasses are structured with surgical precision. The micro-pricing model is an absolute game-changer."</p>
+                <div class="testimonial-author">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&auto=format&fit=crop&q=80" alt="Marcus V." class="author-avatar">
+                    <div class="author-info">
+                        <h4>Marcus Vance</h4>
+                        <p>Algorithmic Trader</p>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-card">
+                <p class="testimonial-text">"Unmatched aesthetic quality. It easily competes with multi-billion dollar platforms while offering superior depth and speed."</p>
+                <div class="testimonial-author">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?w=100&auto=format&fit=crop&q=80" alt="Elena R." class="author-avatar">
+                    <div class="author-info">
+                        <h4>Elena Rostova</h4>
+                        <p>Cybersecurity Analyst</p>
+                    </div>
+                </div>
+            </div>
         </div>
-        
-        <!-- 11 -->
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=600&auto=format&fit=crop&q=80" alt="Video Editing" class="card-img">
-            <div class="card-content"><div class="info"><h3>11. Video Editing</h3><p>Level 1 ($3) | Level 2 ($6) | Level 3 ($12)</p></div><a href="https://www.google.com/search?q=Video+Editing+masterclass" target="_blank" class="btn-enroll">Join</a></div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="faq-section" id="faq">
+        <div class="section-header">
+            <h2>Frequently Asked Questions</h2>
+            <p>Everything you need to know about Mindmaze access and pricing.</p>
         </div>
-        
-        <!-- 12 -->
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80" alt="Thumbnail Design" class="card-img">
-            <div class="card-content"><div class="info"><h3>12. Thumbnail Design</h3><p>Level 1 ($3) | Level 2 ($5) | Level 3 ($10)</p></div><a href="https://www.google.com/search?q=Thumbnail+Design+tutorial" target="_blank" class="btn-enroll">Join</a></div>
+        <div class="faq-accordion">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How does the tiered pricing structure work?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Each masterclass is divided into progressive levels (Level 1, Level 2, Level 3). Small skills range from $3 to $10, while Advanced skills range from $4 to $11, ensuring complete affordability without compromising on depth.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can I use the AI Assistant for custom career advice?</span>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes! Our floating Neural AI assistant is specifically trained to help beginners and advanced learners choose ideal career paths, explain complex trading strategies, and debug programming code in real time.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How do instructors get compensated?</span>
+                    <p></p>
+                    <i class="fa-solid fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Mindmaze operates on a transparent 70/30 economic model where 70% of revenue goes directly to the course creators and mentors, while 30% is reinvested into platform infrastructure.</p>
+                </div>
+            </div>
         </div>
-        
-        <!-- 13 -->
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?w=600&auto=format&fit=crop&q=80" alt="Graphic Design" class="card-img">
-            <div class="card-content"><div class="info"><h3>13. Graphic Design</h3><p>Level 1 ($3) | Level 2 ($6) | Level 3 ($12)</p></div><a href="https://www.google.com/search?q=Graphic+Design+course" target="_blank" class="btn-enroll">Join</a></div>
+    </section>
+
+    <!-- NEWSLETTER / CONTACT SECTION -->
+    <section class="contact-section">
+        <div class="contact-box">
+            <h2>Join the Inner Circle</h2>
+            <p>Receive exclusive weekly intelligence briefings on AI breakthroughs, trading strategies, and platform updates.</p>
+            <form class="newsletter-form" onsubmit="event.preventDefault(); alert('Subscribed successfully to Mindmaze Intelligence!');">
+                <input type="email" placeholder="Enter your professional email..." required>
+                <button type="submit" class="btn-glow" style="padding: 16px 28px;">Subscribe</button>
+            </form>
         </div>
-        
-        <!-- 14 -->
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&auto=format&fit=crop&q=80" alt="Motion Graphics" class="card-img">
-            <div class="card-content"><div class="info"><h3>14. Motion Graphics</h3><p>Level 1 ($4) | Level 2 ($8) | Level 3 ($15)</p></div><a href="https://www.google.com/search?q=Motion+Graphics+tutorial" target="_blank" class="btn-enroll">Join</a></div>
+    </section>
+
+    <!-- PROFESSIONAL FOOTER -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <a href="#" class="logo" style="margin-bottom: 15px; display:inline-flex;">
+                    <i class="fa-solid fa-cube"></i> MINDMAZE
+                </a>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">The ultra-premium global ecosystem for advanced technology, trading, and professional mastery.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Masterclasses</h4>
+                <ul>
+                    <li><a href="#courses">Full-Stack Dev</a></li>
+                    <li><a href="#courses">Cybersecurity</a></li>
+                    <li><a href="#courses">AI & Automation</a></li>
+                    <li><a href="#courses">Crypto & Forex</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Ecosystem</h4>
+                <ul>
+                    <li><a href="#features">Neural AI</a></li>
+                    <li><a href="#roadmap">2026 Roadmap</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Legal & Privacy</h4>
+                <ul>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Protocol</a></li>
+                    <li><a href="#">Creator Agreement</a></li>
+                    <li><a href="#">Security Audit</a></li>
+                </ul>
+            </div>
         </div>
-        
-        <!-- 15 -->
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1455390582262-044cdead277a?w=600&auto=format&fit=crop&q=80" alt="Copywriting" class="card-img">
-            <div class="card-content"><div class="info"><h3>15. Copywriting & Content Strategy</h3><p>Level 1 ($3) | Level 2 ($6) | Level 3 ($12)</p></div><a href="https://www.google.com/search?q=Copywriting+and+Content+Strategy" target="_blank" class="btn-enroll">Join</a></div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Mindmaze Technologies Inc. All rights reserved.</p>
+            <div class="social-icons">
+                <a href="#" title="Twitter/X"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="#" title="Discord"><i class="fa-brands fa-discord"></i></a>
+                <a href="#" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+            </div>
         </div>
-        
-        <!-- 16 -->
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1432888622747-4eb9a1efebf7?w=600&auto=format&fit=crop&q=80" alt="Digital Marketing" class="card-img">
-            <div class="card-content"><div class="info"><h3>16. Digital Marketing & SEO</h3><p>Level 1 ($4) | Level 2 ($8) | Level 3 ($16)</p></div><a href="https://www.google.com/search?q=Digital+Marketing+and+SEO+course" target="_blank" class="btn-enroll">Join</a></div>
+    </footer>
+
+    <!-- FLOATING AI ASSISTANT WIDGET -->
+    <button class="ai-float-btn" id="aiToggleBtn" title="Open Neural AI Assistant">
+        <i class="fa-solid fa-wand-magic-sparkles"></i>
+    </button>
+
+    <div class="ai-chat-window" id="aiChatWindow">
+        <div class="ai-chat-header">
+            <div class="ai-chat-title">
+                <div class="ai-avatar">AI</div>
+                <div>
+                    <h4>Mindmaze Neural</h4>
+                    <p>Online • Ready to assist</p>
+                </div>
+            </div>
+            <button class="ai-close-btn" id="aiCloseBtn"><i class="fa-solid fa-xmark"></i></button>
         </div>
-        
-        <!-- 17 -->
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1472851294608-062f824d29cc?w=600&auto=format&fit=crop&q=80" alt="E-Commerce" class="card-img">
-            <div class="card-content"><div class="info"><h3>17. E-Commerce & Dropshipping</h3><p>Level 1 ($4) | Level 2 ($9) | Level 3 ($18)</p></div><a href="https://www.google.com/search?q=E-Commerce+and+Dropshipping" target="_blank" class="btn-enroll">Join</a></div>
+        <div class="ai-chat-messages" id="aiMessages">
+            <div class="ai-msg incoming">
+                Greetings, visionary. I am your Neural AI assistant. Ask me anything about our 15 elite masterclasses, career paths, programming, trading, or cybersecurity!
+            </div>
         </div>
-        
-        <!-- 18 -->
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=600&auto=format&fit=crop&q=80" alt="Web3" class="card-img">
-            <div class="card-content"><div class="info"><h3>18. Web3 & Smart Contracts</h3><p>Level 1 ($6) | Level 2 ($12) | Level 3 ($24)</p></div><a href="https://www.google.com/search?q=Web3+and+Smart+Contracts+development" target="_blank" class="btn-enroll">Join</a></div>
-        </div>
-        
-        <!-- 19 -->
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&auto=format&fit=crop&q=80" alt="Game Dev" class="card-img">
-            <div class="card-content"><div class="info"><h3>19. Game Development (Unity/Unreal)</h3><p>Level 1 ($5) | Level 2 ($11) | Level 3 ($22)</p></div><a href="https://www.google.com/search?q=Game+Development+Unity+Unreal" target="_blank" class="btn-enroll">Join</a></div>
-        </div>
-        
-        <!-- 20 -->
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=600&auto=format&fit=crop&q=80" alt="3D Modeling" class="card-img">
-            <div class="card-content"><div class="info"><h3>20. 3D Modeling & Animation</h3><p>Level 1 ($4) | Level 2 ($9) | Level 3 ($18)</p></div><a href="https://www.google.com/search?q=3D+Modeling+and+Animation" target="_blank" class="btn-enroll">Join</a></div>
-        </div>
-        
-        <!-- 21 -->
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1478737270239-2f02b77fc618?w=600&auto=format&fit=crop&q=80" alt="Podcast" class="card-img">
-            <div class="card-content"><div class="info"><h3>21. Podcast Production & Audio Eng.</h3><p>Level 1 ($3) | Level 2 ($6) | Level 3 ($12)</p></div><a href="https://www.google.com/search?q=Podcast+Production+Audio+Engineering" target="_blank" class="btn-enroll">Join</a></div>
-        </div>
-        
-        <!-- 22 -->
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=80" alt="Penetration Testing" class="card-img">
-            <div class="card-content"><div class="info"><h3>22. Penetration Testing</h3><p>Level 1 ($6) | Level 2 ($13) | Level 3 ($26)</p></div><a href="https://www.google.com/search?q=Penetration+Testing+ethical+hacking" target="_blank" class="btn-enroll">Join</a></div>
-        </div>
-        
-        <!-- 23 -->
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=600&auto=format&fit=crop&q=80" alt="Prompt Engineering" class="card-img">
-            <div class="card-content"><div class="info"><h3>23. Prompt Engineering</h3><p>Level 1 ($3) | Level 2 ($6) | Level 3 ($12)</p></div><a href="https://www.google.com/search?q=Prompt+Engineering+tutorial" target="_blank" class="btn-enroll">Join</a></div>
-        </div>
-        
-        <!-- 24 -->
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=600&auto=format&fit=crop&q=80" alt="Robotics" class="card-img">
-            <div class="card-content"><div class="info"><h3>24. Robotics & IoT Programming</h3><p>Level 1 ($6) | Level 2 ($12) | Level 3 ($25)</p></div><a href="https://www.google.com/search?q=Robotics+and+IoT+Programming" target="_blank" class="btn-enroll">Join</a></div>
-        </div>
-        
-        <!-- 25 -->
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?w=600&auto=format&fit=crop&q=80" alt="Project Management" class="card-img">
-            <div class="card-content"><div class="info"><h3>25. Project Management (Agile/Scrum)</h3><p>Level 1 ($4) | Level 2 ($8) | Level 3 ($16)</p></div><a href="https://www.google.com/search?q=Project+Management+Agile+Scrum" target="_blank" class="btn-enroll">Join</a></div>
-        </div>
-        
-        <!-- 26 -->
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=600&auto=format&fit=crop&q=80" alt="Financial Analysis" class="card-img">
-            <div class="card-content"><div class="info"><h3>26. Financial Analysis</h3><p>Level 1 ($4) | Level 2 ($9) | Level 3 ($18)</p></div><a href="https://www.google.com/search?q=Financial+Analysis+course" target="_blank" class="btn-enroll">Join</a></div>
-        </div>
-        
-        <!-- 27 -->
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1563986768609-322da13575f3?w=600&auto=format&fit=crop&q=80" alt="Fintech" class="card-img">
-            <div class="card-content"><div class="info"><h3>27. Fintech & Regulatory Compliance</h3><p>Level 1 ($5) | Level 2 ($10) | Level 3 ($20)</p></div><a href="https://www.google.com/search?q=Fintech+and+Regulatory+Compliance" target="_blank" class="btn-enroll">Join</a></div>
-        </div>
-        
-        <!-- 28 -->
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=600&auto=format&fit=crop&q=80" alt="Networking" class="card-img">
-            <div class="card-content"><div class="info"><h3>28. Networking & P2P Mesh Systems</h3><p>Level 1 ($5) | Level 2 ($11) | Level 3 ($22)</p></div><a href="https://www.google.com/search?q=Networking+and+P2P+Mesh+Systems" target="_blank" class="btn-enroll">Join</a></div>
-        </div>
-        
-        <!-- 29 -->
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&auto=format&fit=crop&q=80" alt="Cryptography" class="card-img">
-            <div class="card-content"><div class="info"><h3>29. Cryptography & Data Privacy</h3><p>Level 1 ($6) | Level 2 ($12) | Level 3 ($25)</p></div><a href="https://www.google.com/search?q=Cryptography+and+Data+Privacy" target="_blank" class="btn-enroll">Join</a></div>
-        </div>
-        
-        <!-- 30 -->
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&auto=format&fit=crop&q=80" alt="Software Testing" class="card-img">
-            <div class="card-content"><div class="info"><h3>30. Software Testing & QA</h3><p>Level 1 ($4) | Level 2 ($8) | Level 3 ($16)</p></div><a href="https://www.google.com/search?q=Software+Testing+and+QA" target="_blank" class="btn-enroll">Join</a></div>
+        <div class="ai-chat-input-area">
+            <input type="text" id="aiUserInput" placeholder="Ask AI a question...">
+            <button class="ai-send-btn" id="aiSendBtn"><i class="fa-solid fa-paper-plane"></i></button>
         </div>
     </div>
 
+    <!-- BACK TO TOP BUTTON -->
+    <button class="back-to-top" id="backToTop" title="Back to Top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // 1. Loading Screen Handler
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const loader = document.getElementById('loader');
+                loader.classList.add('hidden');
+            }, 600);
+        });
+
+        // 2. Theme Toggle (Dark / Light Mode)
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+        const htmlElement = document.documentElement;
+
+        themeToggle.addEventListener('click', () => {
+            if (htmlElement.classList.contains('dark')) {
+                htmlElement.classList.remove('dark');
+                htmlElement.classList.add('light');
+                themeIcon.classList.remove('fa-moon');
+                themeIcon.classList.add('fa-sun');
+            } else {
+                htmlElement.classList.remove('light');
+                htmlElement.classList.add('dark');
+                themeIcon.classList.remove('fa-sun');
+                themeIcon.classList.add('fa-moon');
+            }
+        });
+
+        // 3. Search Courses functionality
+        const searchInput = document.getElementById('courseSearch');
+        const courseCards = document.querySelectorAll('.course-card');
+
+        searchInput.addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            courseCards.forEach(card => {
+                const title = card.getAttribute('data-title').toLowerCase();
+                if (title.includes(term)) {
+                    card.style.display = 'flex';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // 4. Filter Tabs functionality
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.getAttribute('data-filter');
+
+                courseCards.forEach(card => {
+                    const cat = card.getAttribute('data-category');
+                    if (filter === 'all' || cat === filter) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // 5. Favorite Heart Toggle
+        const favoriteBtns = document.querySelectorAll('.favorite-btn');
+        favoriteBtns.forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const icon = btn.querySelector('i');
+                if (icon.classList.contains('fa-regular')) {
+                    icon.classList.remove('fa-regular');
+                    icon.classList.add('fa-solid');
+                    btn.classList.add('active');
+                } else {
+                    icon.classList.remove('fa-solid');
+                    icon.classList.add('fa-regular');
+                    btn.classList.remove('active');
+                }
+            });
+        });
+
+        // 6. FAQ Accordion
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                const isOpen = item.classList.contains('active');
+                faqItems.forEach(i => i.classList.remove('active'));
+                if (!isOpen) {
+                    item.classList.add('active');
+                }
+            });
+        });
+
+        // 7. Floating AI Assistant Chat Window Toggle
+        const aiToggleBtn = document.getElementById('aiToggleBtn');
+        const aiChatWindow = document.getElementById('aiChatWindow');
+        const aiCloseBtn = document.getElementById('aiCloseBtn');
+        const aiUserInput = document.getElementById('aiUserInput');
+        const aiSendBtn = document.getElementById('aiSendBtn');
+        const aiMessages = document.getElementById('aiMessages');
+
+        aiToggleBtn.addEventListener('click', () => {
+            aiChatWindow.classList.toggle('active');
+        });
+        aiCloseBtn.addEventListener('click', () => {
+            aiChatWindow.classList.remove('active');
+        });
+
+        // AI Response Logic (Production-ready API preparation stub)
+        function handleUserMessage() {
+            const text = aiUserInput.value.trim();
+            if (!text) return;
+
+            // Append User Message
+            const userMsg = document.createElement('div');
+            userMsg.className = 'ai-msg outgoing';
+            userMsg.textContent = text;
+            aiMessages.appendChild(userMsg);
+            aiUserInput.value = '';
+            aiMessages.scrollTop = aiMessages.scrollHeight;
+
+            // Simulated Neural Response (Ready for OpenAI/Gemini/Claude API integration)
+            setTimeout(() => {
+                const aiMsg = document.createElement('div');
+                aiMsg.className = 'ai-msg incoming';
+                
+                const lowerText = text.toLowerCase();
+                if (lowerText.includes('price') || lowerText.includes('cost')) {
+                    aiMsg.textContent = "Our masterclasses are structured across 3 micro-pricing tiers: Small Skills range from $3 to $10, and Advanced Skills range from $4 to $11. Absolute value!";
+                } else if (lowerText.includes('python') || lowerText.includes('code') || lowerText.includes('programming')) {
+                    aiMsg.textContent = "We recommend starting with Course #1 (Full-Stack Programming) or Course #3 (AI Agents & Automation). They include comprehensive hands-on architecture.";
+                } else if (lowerText.includes('trading') || lowerText.includes('crypto') || lowerText.includes('forex')) {
+                    aiMsg.textContent = "Check out Courses #4, #5, and #6 for institutional-grade training in Cryptocurrency, Forex, and Stock Options.";
+                } else {
+                    aiMsg.textContent = "That is a phenomenal question. Mindmaze provides elite training across 15 high-impact disciplines. Feel free to explore our curriculum or ask about specific technical tracks!";
+                }
+
+                aiMessages.appendChild(aiMsg);
+                aiMessages.scrollTop = aiMessages.scrollHeight;
+            }, 600);
+        }
+
+        aiSendBtn.addEventListener('click', handleUserMessage);
+        aiUserInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') handleUserMessage();
+        });
+
+        // 8. Back to Top Button & Sticky Navbar shadow effect
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 400) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // 9. Animated Counters for Statistics
+        const statNumbers = document.querySelectorAll('.stat-number');
+        let animated = false;
+
+        window.addEventListener('scroll', () => {
+            const scrollPos = window.scrollY + window.innerHeight;
+            const statsSectionPos = document.querySelector('.stats-section').offsetTop;
+
+            if (scrollPos > statsSectionPos && !animated) {
+                animated = true;
+                statNumbers.forEach(num => {
+                    const target = +num.getAttribute('data-target');
+                    let current = 0;
+                    const increment = target / 40;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if (current >= target) {
+                            num.textContent = target + (target === 99 ? '%' : target === 15 ? '' : '+');
+                            clearInterval(timer);
+                        } else {
+                            num.textContent = Math.floor(current);
+                        }
+                    }, 30);
+                });
+            }
+        });
+    </script>
 </body>
 </html>
