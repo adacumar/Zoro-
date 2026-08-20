@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>SteadyMaze | Learn • Compete • Grow</title>
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:#07111f;
+  color:#fff;
+}
+
+a{
+  color:inherit;
+  text-decoration:none;
+}
+
+.container{
+  width:92%;
+  max-width:1200px;
+  margin:auto;
+}
+
+/* NAVBAR */
+nav{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(7,17,31,.96);
+  border-bottom:1px solid #1d2b3d;
+}
+
+.navbar{
+  min-height:72px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.logo{
+  font-size:25px;
+  font-weight:900;
+}
+
+.logo span{
+  color:#4d8dff;
+}
+
+.nav-links{
+  display:flex;
+  gap:25px;
+  list-style:none;
+}
+
+.nav-links a{
+  color:#9eacc0;
+  font-size:14px;
+}
+
+.nav-links a:hover{
+  color:#fff;
+}
+
+.nav-buttons{
+  display:flex;
+  gap:10px;
+}
+
+.btn{
+  padding:11px 18px;
+  border-radius:10px;
+  font-weight:bold;
+  border:1px solid #26374d;
+  display:inline-block;
+}
+
+.btn-primary{
+  background:linear-gradient(135deg,#4d8dff,#765cff);
+  border:none;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+}
+
+/* HERO */
+.hero{
+  padding:100px 0 80px;
+  background:
+    radial-gradient(circle at 10% 10%,rgba(77,141,255,.18),transparent 35%),
+    radial-gradient(circle at 90% 10%,rgba(118,92,255,.15),transparent 35%);
+}
+
+.hero-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:60px;
+  align-items:center;
+}
+
+.badge{
+  display:inline-block;
+  padding:7px 13px;
+  border-radius:30px;
+  background:#102441;
+  color:#8db6ff;
+  border:1px solid #244674;
+  font-size:11px;
+  font-weight:bold;
+  margin-bottom:18px;
+}
+
+.hero h1{
+  font-size:clamp(45px,6vw,76px);
+  line-height:1;
+  letter-spacing:-4px;
+  margin-bottom:22px;
+}
+
+.gradient{
+  background:linear-gradient(135deg,#67a0ff,#aa8cff);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.hero p{
+  color:#91a0b5;
+  font-size:18px;
+  line-height:1.7;
+  margin-bottom:28px;
+  max-width:600px;
+}
+
+.hero-buttons{
+  display:flex;
+  gap:12px;
+  flex-wrap:wrap;
+}
+
+/* HERO CARD */
+.hero-image{
+  border-radius:25px;
+  overflow:hidden;
+  border:1px solid #26384e;
+  background:#101d2d;
+  box-shadow:0 25px 70px rgba(0,0,0,.35);
+}
+
+.hero-image img{
+  width:100%;
+  height:430px;
+  object-fit:cover;
+}
+
+.hero-card-info{
+  padding:20px;
+}
+
+.hero-card-info h3{
+  margin-bottom:5px;
+}
+
+.hero-card-info p{
+  font-size:13px;
+  margin:0;
+}
+
+/* STATS */
+.stats{
+  padding:20px 0 70px;
+}
+
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+}
+
+.stat{
+  text-align:center;
+  padding:25px;
+  background:#0e1b2c;
+  border:1px solid #1e2d40;
+  border-radius:16px;
+}
+
+.stat strong{
+  font-size:32px;
+  display:block;
+}
+
+.stat span{
+  color:#8d9bae;
+  font-size:13px;
+}
+
+/* SECTION */
+section{
+  padding:85px 0;
+}
+
+.section-title{
+  text-align:center;
+  max-width:700px;
+  margin:0 auto 50px;
+}
+
+.section-title h2{
+  font-size:43px;
+  margin-bottom:12px;
+}
+
+.section-title p{
+  color:#8d9bae;
+}
+
+/* CATEGORY */
+.category{
+  margin-bottom:75px;
+}
+
+.category-title{
+  margin-bottom:25px;
+}
+
+.category-title h3{
+  font-size:30px;
+}
+
+.category-title p{
+  color:#8d9bae;
+  font-size:13px;
+  margin-top:5px;
+}
+
+/* SKILLS */
+.skills-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.skill-card{
+  background:#0e1b2c;
+  border:1px solid #1f3045;
+  border-radius:18px;
+  overflow:hidden;
+  transition:.25s;
+}
+
+.skill-card:hover{
+  transform:translateY(-6px);
+  border-color:#477fe0;
+}
+
+.skill-image{
+  width:100%;
+  height:200px;
+  overflow:hidden;
+  background:#17263a;
+}
+
+.skill-image img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.skill-content{
+  padding:20px;
+}
+
+.skill-content h4{
+  font-size:21px;
+  margin-bottom:7px;
+}
+
+.skill-content p{
+  color:#8d9bae;
+  font-size:13px;
+  min-height:42px;
+}
+
+.levels{
+  display:flex;
+  flex-wrap:wrap;
+  gap:7px;
+  margin-top:18px;
+}
+
+.level{
+  padding:7px 9px;
+  border-radius:7px;
+  background:#14243a;
+  border:1px solid #263a55;
+  font-size:11px;
+  color:#cbd9eb;
+}
+
+/* COMPETITION */
+.competition{
+  background:#0a1625;
+  border-top:1px solid #1d2b3d;
+  border-bottom:1px solid #1d2b3d;
+}
+
+.competition-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:55px;
+  align-items:center;
+}
+
+.competition h2{
+  font-size:45px;
+  line-height:1.1;
+  margin:15px 0;
+}
+
+.competition p{
+  color:#8d9bae;
+}
+
+.rounds{
+  margin-top:25px;
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.round{
+  display:flex;
+  justify-content:space-between;
+  padding:13px 15px;
+  background:#101e30;
+  border:1px solid #203149;
+  border-radius:10px;
+}
+
+.round span{
+  color:#8d9bae;
+}
+
+/* LEADERBOARD */
+.leaderboard{
+  background:#0e1b2c;
+  border:1px solid #23364d;
+  border-radius:20px;
+  padding:25px;
+}
+
+.leaderboard-top{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:15px;
+}
+
+.live{
+  color:#36d477;
+  font-size:11px;
+  font-weight:bold;
+}
+
+.student{
+  display:grid;
+  grid-template-columns:40px 1fr 70px;
+  padding:14px 0;
+  border-bottom:1px solid #203149;
+}
+
+.student:last-child{
+  border-bottom:none;
+}
+
+.points{
+  text-align:right;
+  color:#82acff;
+  font-weight:bold;
+}
+
+/* HOW */
+.steps{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:18px;
+}
+
+.step{
+  background:#0e1b2c;
+  border:1px solid #203149;
+  border-radius:17px;
+  padding:25px;
+}
+
+.number{
+  width:42px;
+  height:42px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  border-radius:12px;
+  background:#132b4d;
+  color:#85b0ff;
+  font-weight:bold;
+  margin-bottom:18px;
+}
+
+.step p{
+  color:#8d9bae;
+  font-size:13px;
+  margin-top:8px;
+}
+
+/* DASHBOARDS */
+.dashboard-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.dashboard{
+  padding:28px;
+  background:#0e1b2c;
+  border:1px solid #203149;
+  border-radius:18px;
+}
+
+.dashboard-icon{
+  font-size:32px;
+  margin-bottom:15px;
+}
+
+.dashboard p{
+  color:#8d9bae;
+  font-size:13px;
+  margin-top:8px;
+}
+
+/* CTA */
+.cta{
+  text-align:center;
+  background:
+    radial-gradient(circle,rgba(77,141,255,.13),transparent 55%);
+}
+
+.cta h2{
+  font-size:45px;
+  margin-bottom:12px;
+}
+
+.cta p{
+  color:#8d9bae;
+  max-width:600px;
+  margin:0 auto 25px;
+}
+
+/* FOOTER */
+footer{
+  border-top:1px solid #1d2b3d;
+  padding:35px 0;
+}
+
+.footer{
+  display:flex;
+  justify-content:space-between;
+}
+
+.footer p{
+  color:#7f8da0;
+  font-size:13px;
+}
+
+/* MOBILE */
+@media(max-width:950px){
+
+  .nav-links{
+    display:none;
+  }
+
+  .hero-grid,
+  .competition-grid{
+    grid-template-columns:1fr;
+  }
+
+  .skills-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .stats-grid,
+  .steps{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .dashboard-grid{
+    grid-template-columns:1fr;
+  }
+}
+
+@media(max-width:600px){
+
+  .skills-grid,
+  .stats-grid,
+  .steps{
+    grid-template-columns:1fr;
+  }
+
+  .hero{
+    padding-top:65px;
+  }
+
+  .hero h1{
+    font-size:48px;
+    letter-spacing:-2px;
+  }
+
+  .section-title h2,
+  .competition h2,
+  .cta h2{
+    font-size:34px;
+  }
+
+  .footer{
+    flex-direction:column;
+    gap:10px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+  <div class="container navbar">
+
+    <a href="#" class="logo">
+      Steady<span>Maze</span>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#competition">Competition</a></li>
+      <li><a href="#how">How It Works</a></li>
+      <li><a href="#dashboard">Dashboard</a></li>
+    </ul>
+
+    <div class="nav-buttons">
+      <a href="#" class="btn">Login</a>
+      <a href="#" class="btn btn-primary">Join Free</a>
+    </div>
+
+  </div>
+</nav>
+
+
+<!-- HERO -->
+<section class="hero">
+
+  <div class="container hero-grid">
+
+    <div>
+
+      <span class="badge">
+        LEARN • COMPETE • GROW
+      </span>
+
+      <h1>
+        Build skills.<br>
+        <span class="gradient">Build your future.</span>
+      </h1>
+
+      <p>
+        SteadyMaze is a modern learning and competition platform.
+        Choose your skill, study your level, track your progress
+        and compete with students in the same level.
+      </p>
+
+      <div class="hero-buttons">
+        <a href="#skills" class="btn btn-primary">
+          Explore Skills
+        </a>
+
+        <a href="#competition" class="btn">
+          Weekly Competition
+        </a>
+      </div>
+
+    </div>
+
+    <div class="hero-image">
+
+      <img
+        src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=85"
+        alt="Students learning together"
+      >
+
+      <div class="hero-card-info">
+        <h3>Learn. Compete. Grow.</h3>
+        <p>
+          One platform for practical skills and student competition.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- STATS -->
+<section class="stats">
+
+  <div class="container stats-grid">
+
+    <div class="stat">
+      <strong>16</strong>
+      <span>Skills</span>
+    </div>
+
+    <div class="stat">
+      <strong>3</strong>
+      <span>Categories</span>
+    </div>
+
+    <div class="stat">
+      <strong>300</strong>
+      <span>Students / Group</span>
+    </div>
+
+    <div class="stat">
+      <strong>6</strong>
+      <span>Final Winners</span>
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- SKILLS -->
+<section id="skills">
+
+<div class="container">
+
+<div class="section-title">
+
+  <h2>Choose Your Skill</h2>
+
+  <p>
+    Every skill has its own levels, lessons and competition.
+    Pay only for the level you choose.
+  </p>
+
+</div>
+
+
+<!-- HIGH -->
+<div class="category">
+
+  <div class="category-title">
+
+    <h3>🔥 HIGH SKILLS</h3>
+
+    <p>
+      Advanced technology, programming and AI.
+    </p>
+
+  </div>
+
+  <div class="skills-grid">
+
+
+    <!-- PYTHON -->
+    <article class="skill-card">
+
+      <div class="skill-image">
+
+        <img
+          src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1000&q=85"
+          alt="Python programming"
+        >
+
+      </div>
+
+      <div class="skill-content">
+
+        <h4>Python</h4>
+
+        <p>
+          Programming, automation and software development.
+        </p>
+
+        <div class="levels">
+          <span class="level">Level 1 — $100</span>
+          <span class="level">Level 2 — $200</span>
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <!-- JAVA -->
+    <article class="skill-card">
+
+      <div class="skill-image">
+
+        <img
+          src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=1000&q=85"
+          alt="Java programming"
+        >
+
+      </div>
+
+      <div class="skill-content">
+
+        <h4>Java</h4>
+
+        <p>
+          Java programming and application development.
+        </p>
+
+        <div class="levels">
+          <span class="level">Level 1 — $100</span>
+          <span class="level">Level 2 — $200</span>
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <!-- WEB DEVELOPMENT -->
+    <article class="skill-card">
+
+      <div class="skill-image">
+
+        <img
+          src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1000&q=85"
+          alt="Web development"
+        >
+
+      </div>
+
+      <div class="skill-content">
+
+        <h4>Web Development</h4>
+
+        <p>
+          Build modern websites and web applications.
+        </p>
+
+        <div class="levels">
+          <span class="level">Level 1 — $100</span>
+          <span class="level">Level 2 — $200</span>
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <!-- AI WEB -->
+    <article class="skill-card">
+
+      <div class="skill-image">
+
+        <img
+          src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1000&q=85"
+          alt="Artificial intelligence web"
+        >
+
+      </div>
+
+      <div class="skill-content">
+
+        <h4>AI Web</h4>
+
+        <p>
+          Build intelligent AI-powered web experiences.
+        </p>
+
+        <div class="levels">
+          <span class="level">Level 1 — $100</span>
+          <span class="level">Level 2 — $200</span>
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <!-- AI APP -->
+    <article class="skill-card">
+
+      <div class="skill-image">
+
+        <img
+          src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=1000&q=85"
+          alt="AI application"
+        >
+
+      </div>
+
+      <div class="skill-content">
+
+        <h4>AI App</h4>
+
+        <p>
+          Create practical AI-powered applications.
+        </p>
+
+        <div class="levels">
+          <span class="level">Level 1 — $100</span>
+          <span class="level">Level 2 — $200</span>
+        </div>
+
+      </div>
+
+    </article>
+
+  </div>
+
+</div>
+
+
+<!-- MEDIUM -->
+<div class="category">
+
+  <div class="category-title">
+
+    <h3>⚡ MEDIUM SKILLS</h3>
+
+    <p>
+      Practical skills with three learning levels.
+    </p>
+
+  </div>
+
+  <div class="skills-grid">
+
+
+    <!-- FOREX -->
+    <article class="skill-card">
+
+      <div class="skill-image">
+
+        <img
+          src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=1000&q=85"
+          alt="Forex market chart"
+        >
+
+      </div>
+
+      <div class="skill-content">
+
+        <h4>Forex</h4>
+
+        <p>
+          Financial markets and market analysis.
+        </p>
+
+        <div class="levels">
+          <span class="level">Level 1 — $5</span>
+          <span class="level">Level 2 — $10</span>
+          <span class="level">Level 3 — $20</span>
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <!-- CRYPTO -->
+    <article class="skill-card">
+
+      <div class="skill-image">
+
+        <img
+          src="https://images.unsplash.com/photo-1621761191319-c6fb62004040?auto=format&fit=crop&w=1000&q=85"
+          alt="Cryptocurrency"
+        >
+
+      </div>
+
+      <div class="skill-content">
+
+        <h4>Crypto</h4>
+
+        <p>
+          Cryptocurrency and blockchain fundamentals.
+        </p>
+
+        <div class="levels">
+          <span class="level">Level 1 — $5</span>
+          <span class="level">Level 2 — $10</span>
+          <span class="level">Level 3 — $20</span>
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <!-- ENGLISH -->
+    <article class="skill-card">
+
+      <div class="skill-image">
+
+        <img
+          src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&w=1000&q=85"
+          alt="English learning"
+        >
+
+      </div>
+
+      <div class="skill-content">
+
+        <h4>English</h4>
+
+        <p>
+          Communication, vocabulary and language skills.
+        </p>
+
+        <div class="levels">
+          <span class="level">Level 1 — $5</span>
+          <span class="level">Level 2 — $10</span>
+          <span class="level">Level 3 — $20</span>
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <!-- AI AGENT -->
+    <article class="skill-card">
+
+      <div class="skill-image">
+
+        <img
+          src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1000&q=85"
+          alt="AI agent"
+        >
+
+      </div>
+
+      <div class="skill-content">
+
+        <h4>AI Agent</h4>
+
+        <p>
+          AI agents, automation and intelligent workflows.
+        </p>
+
+        <div class="levels">
+          <span class="level">Level 1 — $5</span>
+          <span class="level">Level 2 — $10</span>
+          <span class="level">Level 3 — $20</span>
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <!-- CYBERSECURITY -->
+    <article class="skill-card">
+
+      <div class="skill-image">
+
+        <img
+          src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1000&q=85"
+          alt="Cybersecurity"
+        >
+
+      </div>
+
+      <div class="skill-content">
+
+        <h4>Cybersecurity</h4>
+
+        <p>
+          Cybersecurity fundamentals and safe practices.
+        </p>
+
+        <div class="levels">
+          <span class="level">Level 1 — $5</span>
+          <span class="level">Level 2 — $10</span>
+          <span class="level">Level 3 — $20</span>
+        </div>
+
+      </div>
+
+    </article>
+
+  </div>
+
+</div>
+
+
+<!-- LOWER -->
+<div class="category">
+
+  <div class="category-title">
+
+    <h3>🌱 LOWER SKILLS</h3>
+
+    <p>
+      Beginner-friendly skills with affordable levels.
+    </p>
+
+  </div>
+
+  <div class="skills-grid">
+
+
+    <!-- VIDEO EDITING -->
+    <article class="skill-card">
+
+      <div class="skill-image">
+
+        <img
+          src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=1000&q=85"
+          alt="Video editing"
+        >
+
+      </div>
+
+      <div class="skill-content">
+
+        <h4>Video Editing</h4>
+
+        <p>
+          Editing, storytelling and content production.
+        </p>
+
+        <div class="levels">
+          <span class="level">Level 1 — $3</span>
+          <span class="level">Level 2 — $5</span>
+          <span class="level">Level 3 — $11</span>
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <!-- MOVIE RECAP -->
+    <article class="skill-card">
+
+      <div class="skill-image">
+
+        <img
+          src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=1000&q=85"
+          alt="Movie recap"
+        >
+
+      </div>
+
+      <div class="skill-content">
+
+        <h4>Movie Recap</h4>
+
+        <p>
+          Storytelling and movie content creation.
+        </p>
+
+        <div class="levels">
+          <span class="level">Level 1 — $3</span>
+          <span class="level">Level 2 — $5</span>
+          <span class="level">Level 3 — $11</span>
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <!-- DIGITAL MARKETING -->
+    <article class="skill-card">
+
+      <div class="skill-image">
+
+        <img
+          src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1000&q=85"
+          alt="Digital marketing"
+        >
+
+      </div>
+
+      <div class="skill-content">
+
+        <h4>Digital Marketing</h4>
+
+        <p>
+          Modern digital marketing strategies.
+        </p>
+
+        <div class="levels">
+          <span class="level">Level 1 — $3</span>
+          <span class="level">Level 2 — $5</span>
+          <span class="level">Level 3 — $11</span>
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <!-- AFFILIATE MARKETING -->
+    <article class="skill-card">
+
+      <div class="skill-image">
+
+        <img
+          src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1000&q=85"
+          alt="Affiliate marketing"
+        >
+
+      </div>
+
+      <div class="skill-content">
+
+        <h4>Affiliate Marketing</h4>
+
+        <p>
+          Learn online marketing and affiliate fundamentals.
+        </p>
+
+        <div class="levels">
+          <span class="level">Level 1 — $3</span>
+          <span class="level">Level 2 — $5</span>
+          <span class="level">Level 3 — $11</span>
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <!-- THUMBNAIL -->
+    <article class="skill-card">
+
+      <div class="skill-image">
+
+        <img
+          src="https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?auto=format&fit=crop&w=1000&q=85"
+          alt="Thumbnail design"
+        >
+
+      </div>
+
+      <div class="skill-content">
+
+        <h4>Thumbnail Design</h4>
+
+        <p>
+          Graphic design and professional thumbnails.
+        </p>
+
+        <div class="levels">
+          <span class="level">Level 1 — $3</span>
+          <span class="level">Level 2 — $5</span>
+          <span class="level">Level 3 — $11</span>
+        </div>
+
+      </div>
+
+    </article>
+
+
+    <!-- DROPSHIPPING -->
+    <article class="skill-card">
+
+      <div class="skill-image">
+
+        <img
+          src="https://images.unsplash.com/photo-1556742049-3c0f8d9f9d7c?auto=format&fit=crop&w=1000&q=85"
+          alt="Dropshipping ecommerce"
+        >
+
+      </div>
+
+      <div class="skill-content">
+
+        <h4>Dropshipping</h4>
+
+        <p>
+          Ecommerce, online stores and dropshipping fundamentals.
+        </p>
+
+        <div class="levels">
+          <span class="level">Level 1 — $3</span>
+          <span class="level">Level 2 — $5</span>
+          <span class="level">Level 3 — $11</span>
+        </div>
+
+      </div>
+
+    </article>
+
+  </div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- COMPETITION -->
+<section class="competition" id="competition">
+
+<div class="container competition-grid">
+
+  <div>
+
+    <span class="badge">
+      WEEKLY COMPETITION
+    </span>
+
+    <h2>
+      300 Students.<br>
+      One Level.
+    </h2>
+
+    <p>
+      Students compete with others studying the same skill
+      and the same level.
+    </p>
+
+    <div class="rounds">
+
+      <div class="round">
+        <strong>Round 1</strong>
+        <span>300 students</span>
+      </div>
+
+      <div class="round">
+        <strong>Round 2</strong>
+        <span>150 students</span>
+      </div>
+
+      <div class="round">
+        <strong>Round 3</strong>
+        <span>100 students</span>
+      </div>
+
+      <div class="round">
+        <strong>Round 4</strong>
+        <span>50 students</span>
+      </div>
+
+      <div class="round">
+        <strong>Round 5</strong>
+        <span>25 students</span>
+      </div>
+
+      <div class="round">
+        <strong>Round 6</strong>
+        <span>12 students</span>
+      </div>
+
+      <div class="round">
+        <strong>Final</strong>
+        <span>6 Winners</span>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <div class="leaderboard">
+
+    <div class="leaderboard-top">
+      <strong>Crypto — Level 3</strong>
+      <span class="live">● LIVE</span>
+    </div>
+
+    <div class="student">
+      <strong>1</strong>
+      <strong>Student One</strong>
+      <span class="points">980</span>
+    </div>
+
+    <div class="student">
+      <strong>2</strong>
+      <strong>Student Two</strong>
+      <span class="points">950</span>
+    </div>
+
+    <div class="student">
+      <strong>3</strong>
+      <strong>Student Three</strong>
+      <span class="points">925</span>
+    </div>
+
+    <div class="student">
+      <strong>4</strong>
+      <strong>Student Four</strong>
+      <span class="points">900</span>
+    </div>
+
+    <div class="student">
+      <strong>5</strong>
+      <strong>Student Five</strong>
+      <span class="points">870</span>
+    </div>
+
+    <div class="student">
+      <strong>6</strong>
+      <strong>Student Six</strong>
+      <span class="points">850</span>
+    </div>
+
+  </div>
+
+</div>
+
+</section>
+
+
+<!-- HOW IT WORKS -->
+<section id="how">
+
+<div class="container">
+
+<div class="section-title">
+
+  <h2>How It Works</h2>
+
+  <p>
+    A simple path from choosing a skill to competing.
+  </p>
+
+</div>
+
+<div class="steps">
+
+  <div class="step">
+    <div class="number">01</div>
+    <h3>Create Account</h3>
+    <p>
+      Create your student account.
+    </p>
+  </div>
+
+  <div class="step">
+    <div class="number">02</div>
+    <h3>Choose Skill</h3>
+    <p>
+      Choose the skill you want to learn.
+    </p>
+  </div>
+
+  <div class="step">
+    <div class="number">03</div>
+    <h3>Choose Level</h3>
+    <p>
+      Pay for and join the level you select.
+    </p>
+  </div>
+
+  <div class="step">
+    <div class="number">04</div>
+    <h3>Learn & Compete</h3>
+    <p>
+      Study lessons and enter your weekly competition.
+    </p>
+  </div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- DASHBOARD -->
+<section id="dashboard">
+
+<div class="container">
+
+<div class="section-title">
+
+  <h2>Powerful Dashboards</h2>
+
+  <p>
+    Everyone gets a dashboard designed for their role.
+  </p>
+
+</div>
+
+<div class="dashboard-grid">
+
+  <div class="dashboard">
+    <div class="dashboard-icon">🎓</div>
+    <h3>Student Dashboard</h3>
+    <p>
+      View lessons, progress, scores, ranking,
+      competition rounds and weekly growth analysis.
+    </p>
+  </div>
+
+  <div class="dashboard">
+    <div class="dashboard-icon">👨‍🏫</div>
+    <h3>Teacher Dashboard</h3>
+    <p>
+      Teachers can manage lessons, videos,
+      students and their profile information.
+    </p>
+  </div>
+
+  <div class="dashboard">
+    <div class="dashboard-icon">👑</div>
+    <h3>Admin Dashboard</h3>
+    <p>
+      Manage students, teachers, skills,
+      payments, competitions and platform activity.
+    </p>
+  </div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- CTA -->
+<section class="cta">
+
+<div class="container">
+
+  <h2>Start Your Journey</h2>
+
+  <p>
+    Choose a skill, choose your level,
+    learn with your teacher and compete every week.
+  </p>
+
+  <a href="#" class="btn btn-primary">
+    Join SteadyMaze
+  </a>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+
+<div class="container footer">
+
+  <div>
+    <div class="logo">
+      Steady<span>Maze</span>
+    </div>
+
+    <p>Learn • Compete • Grow</p>
+  </div>
+
+  <p>
+    © 2026 SteadyMaze
+  </p>
+
+</div>
+
+</footer>
+
+</body>
+</html>
