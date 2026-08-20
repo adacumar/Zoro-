@@ -1,0 +1,2473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>SteadyMaze | Learn. Build. Compete.</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #07111f;
+      color: #fff;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: min(1180px, 92%);
+      margin: auto;
+    }
+
+    /* NAVBAR */
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(7, 17, 31, .95);
+      backdrop-filter: blur(15px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 25px;
+      font-weight: 900;
+    }
+
+    .logo span {
+      color: #5eead4;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #9aa9bc;
+      font-size: 14px;
+    }
+
+    .nav-links a:hover {
+      color: #fff;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 12px 19px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 800;
+      transition: .25s;
+    }
+
+    .btn-primary {
+      background: #5eead4;
+      color: #04201d;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      border: 1px solid rgba(255,255,255,.15);
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,.06);
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 700px;
+      display: flex;
+      align-items: center;
+
+      background:
+        radial-gradient(
+          circle at 75% 25%,
+          rgba(45,212,191,.16),
+          transparent 32%
+        ),
+        radial-gradient(
+          circle at 15% 70%,
+          rgba(59,130,246,.13),
+          transparent 30%
+        );
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 60px;
+      align-items: center;
+      padding: 80px 0;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 7px 13px;
+      border-radius: 30px;
+      color: #5eead4;
+      background: rgba(94,234,212,.08);
+      border: 1px solid rgba(94,234,212,.2);
+      font-size: 12px;
+      font-weight: 900;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(45px, 6vw, 76px);
+      line-height: .98;
+      letter-spacing: -4px;
+    }
+
+    .hero h1 span {
+      color: #5eead4;
+    }
+
+    .hero-text {
+      max-width: 620px;
+      margin: 25px 0 30px;
+      color: #94a3b8;
+      font-size: 18px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 38px;
+      margin-top: 42px;
+    }
+
+    .hero-stat strong {
+      display: block;
+      font-size: 25px;
+    }
+
+    .hero-stat span {
+      color: #64748b;
+      font-size: 13px;
+    }
+
+    .hero-image {
+      overflow: hidden;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,.1);
+      box-shadow: 0 30px 70px rgba(0,0,0,.35);
+    }
+
+    .hero-image img {
+      height: 470px;
+      object-fit: cover;
+    }
+
+    .hero-caption {
+      padding: 22px;
+      background: #0d1b2c;
+    }
+
+    .hero-caption p {
+      color: #94a3b8;
+      font-size: 14px;
+      margin-top: 5px;
+    }
+
+    /* GENERAL */
+
+    section {
+      padding: 100px 0;
+    }
+
+    .section-title {
+      max-width: 700px;
+      margin-bottom: 45px;
+    }
+
+    .eyebrow {
+      color: #5eead4;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(34px, 5vw, 50px);
+      line-height: 1.05;
+      letter-spacing: -2px;
+    }
+
+    .section-title p {
+      color: #94a3b8;
+      margin-top: 15px;
+    }
+
+    /* LEVEL */
+
+    .level {
+      margin-top: 75px;
+    }
+
+    .level-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      margin-bottom: 25px;
+    }
+
+    .level-header h3 {
+      font-size: 30px;
+    }
+
+    .level-header p {
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    /* SKILL CARD */
+
+    .skill-card {
+      overflow: hidden;
+      border-radius: 18px;
+      background: #0c192a;
+      border: 1px solid rgba(255,255,255,.08);
+      transition: .3s;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(94,234,212,.35);
+    }
+
+    .skill-card img {
+      height: 210px;
+      object-fit: cover;
+    }
+
+    .skill-body {
+      padding: 20px;
+    }
+
+    .skill-body h4 {
+      font-size: 20px;
+      margin-bottom: 7px;
+    }
+
+    .skill-body p {
+      min-height: 44px;
+      color: #64748b;
+      font-size: 13px;
+    }
+
+    /* PRICES */
+
+    .skill-prices {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 7px;
+      margin-top: 20px;
+    }
+
+    .price-box {
+      padding: 10px 5px;
+      text-align: center;
+      background: #101f32;
+      border-radius: 9px;
+      border: 1px solid rgba(255,255,255,.06);
+    }
+
+    .price-box span {
+      display: block;
+      color: #64748b;
+      font-size: 10px;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .price-box strong {
+      color: #5eead4;
+      font-size: 15px;
+    }
+
+    .explore {
+      display: block;
+      text-align: center;
+      margin-top: 14px;
+      padding: 10px;
+      border-radius: 9px;
+      background: rgba(94,234,212,.08);
+      color: #5eead4;
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    /* TEACHERS */
+
+    .teachers {
+      background: #0a1727;
+    }
+
+    .teacher-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .teacher-card {
+      padding: 28px;
+      background: #0d1b2c;
+      border: 1px solid rgba(255,255,255,.08);
+      border-radius: 18px;
+    }
+
+    .teacher-icon {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      background: rgba(94,234,212,.1);
+      color: #5eead4;
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .teacher-card p {
+      color: #64748b;
+      margin-top: 6px;
+    }
+
+    /* COMPETITION */
+
+    .competition-box {
+      padding: 45px;
+      border-radius: 25px;
+      background: #0d1b2c;
+      border: 1px solid rgba(94,234,212,.14);
+    }
+
+    .competition-flow {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      align-items: center;
+      gap: 10px;
+      margin-top: 40px;
+    }
+
+    .round {
+      text-align: center;
+    }
+
+    .round-circle {
+      width: 76px;
+      height: 76px;
+      margin: auto;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #12243a;
+      border: 1px solid rgba(255,255,255,.1);
+      font-size: 19px;
+      font-weight: 900;
+    }
+
+    .round-circle.final {
+      color: #5eead4;
+      border-color: rgba(94,234,212,.4);
+    }
+
+    .round span {
+      display: block;
+      margin-top: 8px;
+      color: #64748b;
+      font-size: 11px;
+    }
+
+    .arrow {
+      color: #5eead4;
+      text-align: center;
+      font-size: 22px;
+    }
+
+    /* CTA */
+
+    .cta {
+      text-align: center;
+    }
+
+    .cta-box {
+      padding: 70px 25px;
+      border-radius: 25px;
+      background: #0d1b2c;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+
+    .cta-box h2 {
+      font-size: clamp(34px, 5vw, 52px);
+      letter-spacing: -2px;
+    }
+
+    .cta-box p {
+      max-width: 600px;
+      margin: 15px auto 28px;
+      color: #94a3b8;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 45px 0;
+      border-top: 1px solid rgba(255,255,255,.07);
+      color: #64748b;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .footer-logo {
+      color: #fff;
+      font-weight: 900;
+      font-size: 20px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-size: 13px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 900px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .competition-flow {
+        grid-template-columns: repeat(4, 1fr);
+      }
+
+      .arrow {
+        display: none;
+      }
+    }
+
+    @media (max-width: 600px) {
+
+      .nav-buttons .btn-outline {
+        display: none;
+      }
+
+      .hero-grid {
+        padding: 60px 0;
+      }
+
+      .hero h1 {
+        letter-spacing: -2px;
+      }
+
+      section {
+        padding: 70px 0;
+      }
+
+      .skills-grid,
+      .teacher-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .competition-box {
+        padding: 25px 15px;
+      }
+
+      .competition-flow {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+
+  <header class="navbar">
+
+    <div class="container nav">
+
+      <a href="#" class="logo">
+        Steady<span>Maze</span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#competition">Competition</a></li>
+        <li><a href="#teachers">Teachers</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+
+      <div class="nav-buttons">
+        <a href="#" class="btn btn-outline">Login</a>
+        <a href="#skills" class="btn btn-primary">Get Started</a>
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- HERO -->
+
+  <main>
+
+    <section class="hero">
+
+      <div class="container hero-grid">
+
+        <div>
+
+          <div class="badge">
+            LEARN • BUILD • COMPETE
+          </div>
+
+          <h1>
+            Build skills that
+            <span>change your future.</span>
+          </h1>
+
+          <p class="hero-text">
+            Learn practical digital skills with dedicated teachers,
+            complete real projects, track your progress and compete
+            through SteadyMaze.
+          </p>
+
+          <div class="hero-buttons">
+
+            <a href="#skills" class="btn btn-primary">
+              Explore Skills
+            </a>
+
+            <a href="#competition" class="btn btn-outline">
+              How It Works
+            </a>
+
+          </div>
+
+          <div class="hero-stats">
+
+            <div class="hero-stat">
+              <strong>300</strong>
+              <span>Students</span>
+            </div>
+
+            <div class="hero-stat">
+              <strong>17</strong>
+              <span>Skills</span>
+            </div>
+
+            <div class="hero-stat">
+              <strong>6</strong>
+              <span>Final Winners</span>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="hero-image">
+
+          <img
+            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=85"
+            alt="Students learning together"
+          >
+
+          <div class="hero-caption">
+            <h3>Learn. Practice. Compete.</h3>
+
+            <p>
+              A structured learning platform built for practical
+              skills and measurable progress.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- SKILLS -->
+
+    <section id="skills">
+
+      <div class="container">
+
+        <div class="section-title">
+
+          <div class="eyebrow">Skills</div>
+
+          <h2>
+            Choose your skill and start building.
+          </h2>
+
+          <p>
+            Every skill has three learning levels with its own price.
+          </p>
+
+        </div>
+
+
+        <!-- LOWER LEVEL -->
+
+        <div class="level">
+
+          <div class="level-header">
+            <div>
+              <h3>Lower Level</h3>
+              <p>Practical digital skills.</p>
+            </div>
+          </div>
+
+
+          <div class="skills-grid">
+
+            <!-- VIDEO EDITING -->
+
+            <article class="skill-card">
+
+              <img
+                src="https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?auto=format&fit=crop&w=900&q=85"
+                alt="Video editing"
+              >
+
+              <div class="skill-body">
+
+                <h4>Video Editing</h4>
+
+                <p>
+                  Learn video editing and content production.
+                </p>
+
+                <div class="skill-prices">
+
+                  <div class="price-box">
+                    <span>Level 1</span>
+                    <strong>$3</strong>
+                  </div>
+
+                  <div class="price-box">
+                    <span>Level 2</span>
+                    <strong>$5</strong>
+                  </div>
+
+                  <div class="price-box">
+                    <span>Level 3</span>
+                    <strong>$11</strong>
+                  </div>
+
+                </div>
+
+                <a href="#" class="explore">View Skill →</a>
+
+              </div>
+
+            </article>
+
+
+            <!-- THUMBNAIL -->
+
+            <article class="skill-card">
+
+              <img
+                src="https://images.unsplash.com/photo-1558655146-d09347e92766?auto=format&fit=crop&w=900&q=85"
+                alt="Thumbnail design"
+              >
+
+              <div class="skill-body">
+
+                <h4>Thumbnail Design</h4>
+
+                <p>
+                  Learn professional thumbnail creation.
+                </p>
+
+                <div class="skill-prices">
+
+                  <div class="price-box">
+                    <span>Level 1</span>
+                    <strong>$3</strong>
+                  </div>
+
+                  <div class="price-box">
+                    <span>Level 2</span>
+                    <strong>$5</strong>
+                  </div>
+
+                  <div class="price-box">
+                    <span>Level 3</span>
+                    <strong>$11</strong>
+                  </div>
+
+                </div>
+
+                <a href="#" class="explore">View Skill →</a>
+
+              </div>
+
+            </article>
+
+
+            <!-- MOVIE RECAP -->
+
+            <article class="skill-card">
+
+              <img
+                src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=900&q=85"
+                alt="Movie production"
+              >
+
+              <div class="skill-body">
+
+                <h4>Movie Recap</h4>
+
+                <p>
+                  Learn storytelling and recap production.
+                </p>
+
+                <div class="skill-prices">
+
+                  <div class="price-box">
+                    <span>Level 1</span>
+                    <strong>$3</strong>
+                  </div>
+
+                  <div class="price-box">
+                    <span>Level 2</span>
+                    <strong>$5</strong>
+                  </div>
+
+                  <div class="price-box">
+                    <span>Level 3</span>
+                    <strong>$11</strong>
+                  </div>
+
+                </div>
+
+                <a href="#" class="explore">View Skill →</a>
+
+              </div>
+
+            </article>
+
+
+            <!-- DIGITAL MARKETING -->
+
+            <article class="skill-card">
+
+              <img
+                src="https://images.unsplash.com/photo-1557838923-2985c318be48?auto=format&fit=crop&w=900&q=85"
+                alt="Digital marketing"
+              >
+
+              <div class="skill-body">
+
+                <h4>Digital Marketing</h4>
+
+                <p>
+                  Learn strategies for growing online businesses.
+                </p>
+
+                <div class="skill-prices">
+
+                  <div class="price-box">
+                    <span>Level 1</span>
+                    <strong>$3</strong>
+                  </div>
+
+                  <div class="price-box">
+                    <span>Level 2</span>
+                    <strong>$5</strong>
+                  </div>
+
+                  <div class="price-box">
+                    <span>Level 3</span>
+                    <strong>$11</strong>
+                  </div>
+
+                </div>
+
+                <a href="#" class="explore">View Skill →</a>
+
+              </div>
+
+            </article>
+
+
+            <!-- AFFILIATE -->
+
+            <article class="skill-card">
+
+              <img
+                src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=900&q=85"
+                alt="Affiliate marketing"
+              >
+
+              <div class="skill-body">
+
+                <h4>Affiliate Marketing</h4>
+
+                <p>
+                  Learn online promotion and affiliate business.
+                </p>
+
+                <div class="skill-prices">
+
+                  <div class="price-box">
+                    <span>Level 1</span>
+                    <strong>$3</strong>
+                  </div>
+
+                  <div class="price-box">
+                    <span>Level 2</span>
+                    <strong>$5</strong>
+                  </div>
+
+                  <div class="price-box">
+                    <span>Level 3</span>
+                    <strong>$11</strong>
+                  </div>
+
+                </div>
+
+                <a href="#" class="explore">View Skill →</a>
+
+              </div>
+
+            </article>
+
+
+            <!-- DROPSHIPPING -->
+
+            <article class="skill-card">
+
+              <img
+                src="https://images.unsplash.com/photo-1556740749-887f6717d7e4?auto=format&fit=crop&w=900&q=85"
+                alt="Ecommerce"
+              >
+
+              <div class="skill-body">
+
+                <h4>Dropshipping</h4>
+
+                <p>
+                  Learn ecommerce and online store fundamentals.
+                </p>
+
+                <div class="skill-prices">
+
+                  <div class="price-box">
+                    <span>Level 1</span>
+                    <strong>$3</strong>
+                  </div>
+
+                  <div class="price-box">
+                    <span>Level 2</span>
+                    <strong>$5</strong>
+                  </div>
+
+                  <div class="price-box">
+                    <span>Level 3</span>
+                    <strong>$11</strong>
+                  </div>
+
+                </div>
+
+                <a href="#" class="explore">View Skill →</a>
+
+              </div>
+
+            </article>
+
+          </div>
+
+        </div>
+
+
+        <!-- MEDIUM LEVEL -->
+
+        <div class="level">
+
+          <div class="level-header">
+            <div>
+              <h3>Medium Level</h3>
+              <p>Professional and technical skills.</p>
+            </div>
+          </div>
+
+
+          <div class="skills-grid">
+
+            <article class="skill-card">
+              <img
+                src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=900&q=85"
+                alt="Financial markets"
+              >
+
+              <div class="skill-body">
+
+                <h4>FX</h4>
+                <p>Learn foreign exchange fundamentals.</p>
+
+                <div class="skill-prices">
+                  <div class="price-box">
+                    <span>Level 1</span>
+                    <strong>$5</strong>
+                  </div>
+
+                  <div class="price-box">
+                    <span>Level 2</span>
+                    <strong>$10</strong>
+                  </div>
+
+                  <div class="price-box">
+                    <span>Level 3</span>
+                    <strong>$20</strong>
+                  </div>
+                </div>
+
+                <a href="#" class="explore">View Skill →</a>
+
+              </div>
+            </article>
+
+
+            <article class="skill-card">
+              <img
+                src="https://images.unsplash.com/photo-1621416894569-0f39ed31d247?auto=format&fit=crop&w=900&q=85"
+                alt="Cryptocurrency"
+              >
+
+              <div class="skill-body">
+
+                <h4>Crypto</h4>
+                <p>Learn blockchain and cryptocurrency concepts.</p>
+
+                <div class="skill-prices">
+                  <div class="price-box">
+                    <span>Level 1</span>
+                    <strong>$5</strong>
+                  </div>
+
+                  <div class="price-box">
+                    <span>Level 2</span>
+                    <strong>$10</strong>
+                  </div>
+
+                  <div class="price-box">
+                    <span>Level 3</span>
+                    <strong>$20</strong>
+                  </div>
+                </div>
+
+                <a href="#" class="explore">View Skill →</a>
+
+              </div>
+            </article>
+
+
+            <article class="skill-card">
+              <img
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=85"
+                alt="Data analysis"
+              >
+
+              <div class="skill-body">
+
+                <h4>Data Analysis</h4>
+                <p>Turn data into useful information.</p>
+
+                <div class="skill-prices">
+                  <div class="price-box">
+                    <span>Level 1</span>
+                    <strong>$5</strong>
+                  </div>
+
+                  <div class="price-box">
+                    <span>Level 2</span>
+                    <strong>$10</strong>
+                  </div>
+
+                  <div class="price-box">
+                    <span>Level 3</span>
+                    <strong>$20</strong>
+                  </div>
+                </div>
+
+                <a href="#" class="explore">View Skill →</a>
+
+              </div>
+            </article>
+
+
+            <article class="skill-card">
+              <img
+                src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=900&q=85"
+                alt="English learning"
+              >
+
+              <div class="skill-body">
+
+                <h4>English</h4>
+                <p>Improve professional English communication.</p>
+
+                <div class="skill-prices">
+                  <div class="price-box">
+                    <span>Level 1</span>
+                    <strong>$5</strong>
+                  </div>
+
+                  <div class="price-box">
+                    <span>Level 2</span>
+                    <strong>$10</strong>
+                  </div>
+
+                  <div class="price-box">
+                    <span>Level 3</span>
+                    <strong>$20</strong>
+                  </div>
+                </div>
+
+                <a href="#" class="explore">View Skill →</a>
+
+              </div>
+            </article>
+
+
+            <article class="skill-card">
+              <img
+                src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=900&q=85"
+                alt="AI technology"
+              >
+
+              <div class="skill-body">
+
+                <h4>AI Agent</h4>
+                <p>Explore AI agents and automation.</p>
+
+                <div class="skill-prices">
+                  <div class="price-box">
+                    <span>Level 1</span>
+                    <strong>$5</strong>
+                  </div>
+
+                  <div class="price-box">
+                    <span>Level 2</span>
+                    <strong>$10</strong>
+                  </div>
+
+                  <div class="price-box">
+                    <span>Level 3</span>
+                    <strong>$20</strong>
+                  </div>
+                </div>
+
+                <a href="#" class="explore">View Skill →</a>
+
+              </div>
+            </article>
+
+
+            <article class="skill-card">
+              <img
+                src="https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=900&q=85"
+                alt="Cybersecurity"
+              >
+
+              <div class="skill-body">
+
+                <h4>Cybersecurity</h4>
+                <p>Learn digital security fundamentals.</p>
+
+                <div class="skill-prices">
+                  <div class="price-box">
+                    <span>Level 1</span>
+                    <strong>$5</strong>
+                  </div>
+
+                  <div class="price-box">
+                    <span>Level 2</span>
+                    <strong>$10</strong>
+                  </div>
+
+                  <div class="price-box">
+                    <span>Level 3</span>
+                    <strong>$20</strong>
+                  </div>
+                </div>
+
+                <a href="#" class="explore">View Skill →</a>
+
+              </div>
+            </article>
+
+          </div>
+
+        </div>
+
+
+        <!-- HIGH LEVEL -->
+
+        <div class="level">
+
+          <div class="level-header">
+            <div>
+              <h3>High Level</h3>
+              <p>Advanced development and AI skills.</p>
+            </div>
+          </div>
+
+
+          <div class="skills-grid">
+
+            <article class="skill-card">
+              <img
+                src="https://images.unsplash.com/photo-1526379095098-d400fd0bf935?auto=format&fit=crop&w=900&q=85"
+                alt="Python programming"
+              >
+
+              <div class="skill-body">
+
+                <h4>Python</h4>
+                <p>Build applications with modern Python.</p>
+
+                <div class="skill-prices">
+                  <div class="price-box">
+                    <span>Level 1</span>
+                    <strong>$100</strong>
+                  </div>
+
+                  <div class="price-box">
+                    <span>Level 2</span>
+                    <strong>$200</strong>
+                  </div>
+
+                  <div class="price-box">
+                    <span>Level 3</span>
+                    <strong>TBA</strong>
+                  </div>
+                </div>
+
+                <a href="#" class="explore">View Skill →</a>
+
+              </div>
+            </article>
+
+
+            <article class="skill-card">
+              <img
+                src="https://images.unsplash.com/photo-1516116216624-53e697fedbea?auto=format&fit=crop&w=900&q=85"
+                alt="Java programming"
+              >
+
+              <div class="skill-body">
+
+                <h4>Java</h4>
+                <p>Learn programming and Java development.</p>
+
+                <div class="skill-prices">
+                  <div class="price-box">
+                    <span>Level 1</span>
+                    <strong>$100</strong>
+                  </div>
+
+                  <div class="price-box">
+                    <span>Level 2</span>
+                    <strong>$200</strong>
+                  </div>
+
+                  <div class="price-box">
+                    <span>Level 3</span>
+                    <strong>TBA</strong>
+                  </div>
+                </div>
+
+                <a href="#" class="explore">View Skill →</a>
+
+              </div>
+            </article>
+
+
+            <article class="skill-card">
+              <img
+                src="https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=900&q=85"
+                alt="Web development"
+              >
+
+              <div class="skill-body">
+
+                <h4>Web Development</h4>
+                <p>Build modern websites and web applications.</p>
+
+                <div class="skill-prices">
+                  <div class="price-box">
+                    <span>Level 1</span>
+                    <strong>$100</strong>
+                  </div>
+
+                  <div class="price-box">
+                    <span>Level 2</span>
+                    <strong>$200</strong>
+                  </div>
+
+                  <div class="price-box">
+                    <span>Level 3</span>
+                    <strong>TBA</strong>
+                  </div>
+                </div>
+
+                <a href="#" class="explore">View Skill →</a>
+
+              </div>
+            </article>
+
+
+            <article class="skill-card">
+              <img
+                src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=900&q=85"
+                alt="AI web development"
+              >
+
+              <div class="skill-body">
+
+                <h4>AI Web</h4>
+                <p>Build web experiences powered by AI.</p>
+
+                <div class="skill-prices">
+                  <div class="price-box">
+                    <span>Level 1</span>
+                    <strong>$100</strong>
+                  </div>
+
+                  <div class="price-box">
+                    <span>Level 2</span>
+                    <strong>$200</strong>
+                  </div>
+
+                  <div class="price-box">
+                    <span>Level 3</span>
+                    <strong>TBA</strong>
+                  </div>
+                </div>
+
+                <a href="#" class="explore">View Skill →</a>
+
+              </div>
+            </article>
+
+
+            <article class="skill-card">
+              <img
+                src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=900&q=85"
+                alt="AI mobile application"
+              >
+
+              <div class="skill-body">
+
+                <h4>AI App</h4>
+                <p>Learn how intelligent applications are built.</p>
+
+                <div class="skill-prices">
+                  <div class="price-box">
+                    <span>Level 1</span>
+                    <strong>$100</strong>
+                  </div>
+
+                  <div class="price-box">
+                    <span>Level 2</span>
+                    <strong>$200</strong>
+                  </div>
+
+                  <div class="price-box">
+                    <span>Level 3</span>
+                    <strong>TBA</strong>
+                  </div>
+                </div>
+
+                <a href="#" class="explore">View Skill →</a>
+
+              </div>
+            </article>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- TEACHERS -->
+
+    <section class="teachers" id="teachers">
+
+      <div class="container">
+
+        <div class="section-title">
+
+          <div class="eyebrow">Teachers</div>
+
+          <h2>
+            Every skill has two teachers.
+          </h2>
+
+          <p>
+            Teachers guide students through lessons, projects
+            and progress.
+          </p>
+
+        </div>
+
+
+        <div class="teacher-grid">
+
+          <div class="teacher-card">
+
+            <div class="teacher-icon">
+              T1
+            </div>
+
+            <h3>Teacher One</h3>
+
+            <p>
+              Instructor, mentor and project guide.
+            </p>
+
+          </div>
+
+
+          <div class="teacher-card">
+
+            <div class="teacher-icon">
+              T2
+            </div>
+
+            <h3>Teacher Two</h3>
+
+            <p>
+              Instructor, mentor and project guide.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- COMPETITION -->
+
+    <section id="competition">
+
+      <div class="container">
+
+        <div class="competition-box">
+
+          <div class="section-title">
+
+            <div class="eyebrow">Competition</div>
+
+            <h2>
+              300 students. 6 final winners.
+            </h2>
+
+            <p>
+              Students move through each round until six
+              finalists remain.
+            </p>
+
+          </div>
+
+
+          <div class="competition-flow">
+
+            <div class="round">
+              <div class="round-circle">300</div>
+              <span>Start</span>
+            </div>
+
+            <div class="arrow">→</div>
+
+            <div class="round">
+              <div class="round-circle">150</div>
+              <span>Round 1</span>
+            </div>
+
+            <div class="arrow">→</div>
+
+            <div class="round">
+              <div class="round-circle">100</div>
+              <span>Round 2</span>
+            </div>
+
+            <div class="arrow">→</div>
+
+            <div class="round">
+              <div class="round-circle">50</div>
+              <span>Round 3</span>
+            </div>
+
+            <div class="round">
+              <div class="round-circle">25</div>
+              <span>Round 4</span>
+            </div>
+
+            <div class="round">
+              <div class="round-circle">12</div>
+              <span>Round 5</span>
+            </div>
+
+            <div class="round">
+              <div class="round-circle final">6</div>
+              <span>Winners</span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CTA -->
+
+    <section id="about" class="cta">
+
+      <div class="container">
+
+        <div class="cta-box">
+
+          <div class="eyebrow">
+            SteadyMaze
+          </div>
+
+          <h2>
+            Your skill. Your progress. Your journey.
+          </h2>
+
+          <p>
+            Start learning practical skills, work with teachers,
+            complete projects and prepare for the SteadyMaze competition.
+          </p>
+
+          <a href="#skills" class="btn btn-primary">
+            Explore Skills
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="container footer">
+
+      <div>
+        <div class="footer-logo">
+          SteadyMaze
+        </div>
+
+        <small>
+          Learn. Build. Compete.
+        </small>
+      </div>
+
+      <div class="footer-links">
+        <a href="#skills">Skills</a>
+        <a href="#competition">Competition</a>
+        <a href="#teachers">Teachers</a>
+        <a href="#about">About</a>
+      </div>
+
+      <div>
+        © 2026 SteadyMaze
+      </div>
+
+    </div>
+
+  </footer>
+
+</body>
+</html>
+Build the complete SteadyMaze application as a production-ready full-stack learning and competition platform.
+
+IMPORTANT:
+This is NOT a demo website.
+Do NOT use fake hardcoded student data, rankings, scores, earnings, payments, course statistics, teacher ratings, or competition results.
+
+The application must be designed to use a real Supabase PostgreSQL database.
+
+Keep the existing SteadyMaze homepage design exactly consistent with the current visual identity:
+- dark navy background
+- turquoise accent
+- white typography
+- modern premium cards
+- rounded corners
+- clean spacing
+- professional international education platform
+- mobile-first
+- excellent iPhone experience
+- responsive desktop experience
+
+Do NOT replace the existing homepage.
+Extend the existing application.
+
+==================================================
+TECHNOLOGY
+==================================================
+
+Use:
+
+Frontend:
+- React
+- TypeScript
+- modern responsive CSS
+
+Backend/data:
+- Supabase
+- PostgreSQL
+- Supabase Auth
+- Supabase Storage
+- Supabase Realtime
+
+The application must use environment variables for Supabase configuration.
+
+Never expose a Supabase service-role key in frontend code.
+
+Use:
+VITE_SUPABASE_URL
+VITE_SUPABASE_ANON_KEY
+
+Create a clean Supabase client module.
+
+==================================================
+AUTHENTICATION
+==================================================
+
+Implement real authentication using Supabase Auth.
+
+Support:
+
+- Student registration
+- Teacher registration
+- Login
+- Logout
+- Password reset
+- Session persistence
+- Protected routes
+
+User roles:
+
+student
+teacher
+admin
+
+Never trust the frontend role alone.
+
+Roles must be controlled by the database and protected with Row Level Security.
+
+After login redirect users according to their role.
+
+student → Student Dashboard
+teacher → Teacher Dashboard
+admin → Admin Dashboard
+
+==================================================
+DATABASE STRUCTURE
+==================================================
+
+Prepare the application for these PostgreSQL tables:
+
+profiles
+student_profiles
+teacher_profiles
+
+skills
+courses
+course_levels
+lessons
+lesson_resources
+
+enrollments
+lesson_progress
+
+exams
+exam_questions
+exam_attempts
+exam_answers
+
+projects
+project_submissions
+project_reviews
+
+competitions
+competition_rounds
+competition_participants
+competition_scores
+leaderboard_entries
+tie_breaks
+tie_break_participants
+
+payments
+payment_transactions
+teacher_earnings
+
+teacher_reviews
+certificates
+notifications
+
+student_analytics
+teacher_analytics
+
+Create typed interfaces/models for all major entities.
+
+Never invent data when a database query returns no records.
+
+Use empty states such as:
+
+"No data yet"
+
+instead of fake numbers.
+
+==================================================
+SKILLS
+==================================================
+
+The platform must support these skills.
+
+LOWER:
+
+Video Editing
+Movie Recap
+Thumbnail Design
+Digital Marketing
+Affiliate Marketing
+
+MEDIUM:
+
+Forex
+Cybersecurity
+Crypto
+AI Agents
+Data Analytics
+English
+
+HIGH:
+
+Website Development
+AI Websites
+AI App Creator
+JavaScript
+Python
+
+Every skill must support its own:
+
+- image
+- description
+- category
+- levels
+- teachers
+- courses
+- students
+- price
+- rating
+- analytics
+
+Do not hardcode statistics.
+
+==================================================
+COURSE LEVELS
+==================================================
+
+Every skill has independent levels.
+
+LOWER:
+
+Level 1
+Level 2
+Level 3
+
+MEDIUM:
+
+Level 1
+Level 2
+Level 3
+
+HIGH:
+
+Level 1
+Level 2
+Level 3
+
+Prices must come from PostgreSQL.
+
+Do NOT hardcode prices in the UI.
+
+==================================================
+COURSE FLOW
+==================================================
+
+Student:
+
+Skill
+↓
+Course
+↓
+Level
+↓
+Lessons
+↓
+Exam
+↓
+Project
+↓
+Completion
+
+A student must only access courses and levels they are enrolled in or otherwise authorized to access.
+
+Track:
+
+- enrollment
+- lesson completion
+- watch/completion state
+- exam attempts
+- scores
+- project submissions
+- completion percentage
+
+==================================================
+COURSE PAGE
+==================================================
+
+Create a professional course page showing:
+
+- Course image
+- Skill
+- Level
+- Course title
+- Description
+- Teacher
+- Price
+- Lessons
+- Progress
+- Requirements
+- Exam status
+- Project status
+- Continue Learning
+
+Use real database queries.
+
+==================================================
+LESSON PAGE
+==================================================
+
+Create a lesson player.
+
+Show:
+
+- Video
+- Title
+- Description
+- Teacher
+- Resources
+- Previous lesson
+- Next lesson
+- Mark complete
+
+When the student completes the lesson:
+
+save the completion state in PostgreSQL.
+
+Do not fake progress.
+
+==================================================
+EXAM SYSTEM
+==================================================
+
+Create real exam functionality.
+
+Exam belongs to:
+
+course
+level
+student eligibility
+
+Show:
+
+Locked
+Available
+In Progress
+Completed
+
+When student submits:
+
+- calculate score
+- save attempt
+- save answers
+- save score
+- save completion time
+
+Do not allow unauthorized exam access.
+
+==================================================
+PROJECT SYSTEM
+==================================================
+
+Create real project submission functionality.
+
+Student can submit:
+
+- title
+- description
+- file
+- course
+- skill
+- level
+
+Use Supabase Storage for uploaded project files.
+
+Save metadata in PostgreSQL.
+
+Statuses:
+
+Locked
+Open
+Submitted
+Under Review
+Reviewed
+Approved
+Revision Required
+
+Teacher can review the submission.
+
+Teacher can:
+
+- score
+- give stars
+- write feedback
+- approve
+- reject
+- request revision
+
+==================================================
+COMPETITION
+==================================================
+
+Create a real competition system.
+
+Competition data must come from PostgreSQL.
+
+Each competition has:
+
+- name
+- skill
+- level
+- start_at
+- end_at
+- status
+- participant limit
+- rules
+
+Competition status:
+
+Upcoming
+Active
+Ended
+Results Processing
+Completed
+
+==================================================
+COMPETITION ELIMINATION
+==================================================
+
+The competition rule structure is:
+
+300
+150
+100
+50
+25
+12
+6
+
+These are RULES, not fake current statistics.
+
+The actual participant count must come from PostgreSQL.
+
+Each round must have:
+
+- round number
+- name
+- start time
+- end time
+- qualification threshold
+- status
+
+The backend/database controls qualification.
+
+==================================================
+7 DAY COMPETITION
+==================================================
+
+For the initial competition setup, use a 7-day competition duration.
+
+The countdown must be dynamic.
+
+Show:
+
+Days
+Hours
+Minutes
+Seconds
+
+The timer must use the real competition start_at and end_at values.
+
+Do NOT simply display fake countdown numbers.
+
+When the competition reaches end_at:
+
+automatically show competition ended state.
+
+Prepare the system so the administrator can change competition dates later from the database/admin interface.
+
+==================================================
+LIVE LEADERBOARD
+==================================================
+
+Create a live leaderboard.
+
+Columns:
+
+Rank
+Student
+Score
+Round
+Status
+
+Use Supabase Realtime so leaderboard changes can appear without manually refreshing.
+
+Do not create fake students.
+
+If there is no competition data show:
+
+"Leaderboard will appear when the competition starts."
+
+Highlight the logged-in student's row.
+
+==================================================
+TIE BREAK
+==================================================
+
+Create a real tie-break mechanism.
+
+Normally:
+
+Project Upload = LOCKED
+
+If the database identifies a tie that affects qualification:
+
+show:
+
+TIE-BREAK ACTIVATED
+
+Only eligible tied students can upload a tie-break project.
+
+The tie-break project must have:
+
+- upload start time
+- deadline
+- allowed participants
+- status
+
+When the deadline passes:
+
+disable uploads.
+
+Teacher/admin can review tie-break projects.
+
+After scoring:
+
+update competition scores
+update qualification
+update leaderboard
+
+==================================================
+STUDENT DASHBOARD
+==================================================
+
+Create a complete Student Dashboard matching the homepage design.
+
+Sections:
+
+Overview
+My Courses
+Competition
+Leaderboard
+Analytics
+Submissions
+Payments
+Certificates
+Notifications
+Profile
+
+==================================================
+STUDENT OVERVIEW
+==================================================
+
+Show real database data:
+
+- Welcome message
+- Student profile
+- Active courses
+- Learning progress
+- Current competition
+- Current rank
+
+If there is no data:
+
+"No data yet."
+
+==================================================
+STUDENT ANALYTICS
+==================================================
+
+Create professional charts based only on real database data.
+
+Learning analytics:
+
+- lessons completed
+- learning days
+- learning hours
+- learning streak
+- course progress
+- exam performance
+- teacher feedback
+
+Competition analytics:
+
+- rank history
+- score history
+- round history
+- qualification history
+- previous competition results
+- tie-break history
+
+Skill market analytics:
+
+- most enrolled skills
+- most purchased levels
+- fastest growing skills
+- active courses
+- demand trends
+
+Never invent analytics.
+
+==================================================
+FINANCIAL ANALYTICS
+==================================================
+
+Create:
+
+My Payments
+My Earnings
+Transactions
+
+Show real database data:
+
+- total paid
+- course purchases
+- pending payments
+- refunds
+- competition rewards
+- available balance
+
+Transaction table:
+
+Course
+Level
+Amount
+Payment Method
+Date
+Status
+
+Payment UI should support:
+
+Visa
+Mastercard
+PayPal
+
+Do not fake successful payments.
+
+Payment provider integration will be connected later.
+
+==================================================
+TEACHER DASHBOARD
+==================================================
+
+Create a separate Teacher Dashboard using the same SteadyMaze design language.
+
+Teacher navigation:
+
+Dashboard
+My Courses
+Lessons
+Students
+Submissions
+Competition
+Leaderboard
+Analytics
+Earnings
+Ratings
+Profile
+
+Teacher dashboard must query real PostgreSQL data.
+
+Show:
+
+- students
+- courses
+- lesson activity
+- completion
+- submissions
+- ratings
+- earnings
+- competition projects
+
+Do not hardcode numbers.
+
+==================================================
+TEACHER COURSE CREATOR
+==================================================
+
+Teacher can create:
+
+Course
+Skill
+Level
+Description
+Image
+Lessons
+Video
+Resources
+Exam
+Project
+
+Teacher can:
+
+Publish
+Unpublish
+Edit
+Delete
+
+Only authorized teachers can modify their own courses.
+
+==================================================
+TEACHER ANALYTICS
+==================================================
+
+Show real analytics:
+
+- active students
+- lesson completion
+- student engagement
+- course completion
+- exam performance
+- project submissions
+- teacher rating
+- course sales
+- earnings
+- most successful lessons
+
+Use charts.
+
+No fake data.
+
+==================================================
+TEACHER RATING
+==================================================
+
+Students can rate eligible teachers.
+
+Rating:
+
+1–5 stars
+
+Written review
+
+Save reviews to PostgreSQL.
+
+Show teacher average rating calculated from real reviews.
+
+==================================================
+CERTIFICATES
+==================================================
+
+Create certificate records based on real course completion.
+
+Show:
+
+Course
+Level
+Student
+Completion date
+Certificate ID
+
+Generate certificate view from real data.
+
+Do not create fake certificates.
+
+==================================================
+NOTIFICATIONS
+==================================================
+
+Create real notifications.
+
+Examples:
+
+New lesson
+Teacher feedback
+Competition update
+Rank change
+Competition starting
+Competition ending
+Payment confirmation
+Certificate earned
+Project reviewed
+Tie-break activated
+
+Save notifications in PostgreSQL.
+
+==================================================
+SECURITY
+==================================================
+
+Use Supabase Row Level Security.
+
+Students can only access their own:
+
+- profile
+- enrollments
+- progress
+- exam attempts
+- submissions
+- payments
+- certificates
+- notifications
+
+Teachers can only manage:
+
+- their own courses
+- their own lessons
+- students enrolled in their courses
+- submissions assigned to them
+- their own reviews
+- their own earnings
+
+Admin has controlled administrative access.
+
+Never put service-role keys in frontend code.
+
+==================================================
+HOME PAGE
+==================================================
+
+Keep the current homepage style.
+
+Do not replace it.
+
+Homepage navigation should connect to:
+
+Home
+Courses
+Competition
+About
+Contact
+Login
+Register
+
+Course cards should dynamically load from PostgreSQL once the database is connected.
+
+==================================================
+MOBILE
+==================================================
+
+The entire application must be excellent on mobile/iPhone.
+
+Use:
+
+- responsive cards
+- mobile navigation
+- collapsible sidebar
+- readable charts
+- touch-friendly buttons
+- no horizontal overflow
+- responsive tables
+- mobile-friendly upload controls
+
+==================================================
+REAL DATA RULE
+==================================================
+
+This is extremely important.
+
+Never create fake numbers such as:
+
+300 students
+17 skills
+6 winners
+98 score
+72%
+$500 earnings
+4.8 rating
+
+unless the value actually comes from PostgreSQL.
+
+The numbers:
+
+300 → 150 → 100 → 50 → 25 → 12 → 6
+
+are only competition RULE stages.
+
+The initial competition duration is 7 days.
+
+Everything else must be database-driven.
+
+==================================================
+ERROR HANDLING
+==================================================
+
+Add:
+
+- loading states
+- empty states
+- error states
+- retry buttons
+- authentication errors
+- database errors
+- upload errors
+- payment status errors
+
+Do not crash the application when data is missing.
+
+==================================================
+CODE QUALITY
+==================================================
+
+Use:
+
+- reusable components
+- reusable cards
+- reusable charts
+- reusable forms
+- protected routes
+- clean folder structure
+- TypeScript types
+- centralized Supabase client
+- secure environment variables
+- clear comments for beginner maintenance
+
+Do not put the entire application into one giant component.
+
+==================================================
+IMPORTANT FINAL REQUIREMENT
+==================================================
+
+The application must be designed as a REAL SteadyMaze platform, not a visual demo.
+
+All important data must eventually come from Supabase PostgreSQL.
+
+Build the frontend, Supabase integration layer, authentication layer, storage layer, realtime leaderboard architecture, database types, protected routes, loading states, and empty states.
+
+Do not destroy the existing SteadyMaze homepage.
+
+Make every new page visually consistent with the homepage.
